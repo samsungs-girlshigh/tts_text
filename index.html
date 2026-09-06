@@ -267,6 +267,14 @@
       <div class="space-y-4 pt-2">
         <div>
           <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <span>글씨 크기 (Font Size)</span>
+            <span id="val-font-size" class="text-brand-600">16px</span>
+          </div>
+          <input type="range" id="input-font-size" min="12" max="28" step="1" value="16" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none accent-brand-600 cursor-pointer" />
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
             <span>재생 속도 (Speed)</span>
             <span id="val-rate" class="text-brand-600">1.0x</span>
           </div>
@@ -280,6 +288,34 @@
           </div>
           <input type="range" id="input-pitch" min="0.5" max="1.5" step="0.1" value="1.0" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none accent-brand-600 cursor-pointer" />
         </div>
+      </div>
+
+      <!-- Player Bar Position Setting -->
+      <div class="space-y-2">
+        <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">플레이어 위치 설정</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button id="btn-pos-bottom" data-pos="bottom" class="btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300">
+            ⬇️ 화면 하단 고정
+          </button>
+          <button id="btn-pos-top" data-pos="top" class="btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">
+            ⬆️ 화면 상단 고정
+          </button>
+        </div>
+      </div>
+
+      <!-- Screen Wake Lock Option -->
+      <div class="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200/80 dark:border-slate-700/80">
+        <div class="pr-2">
+          <div class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+            <i class="ph-bold ph-sun text-amber-500 text-sm"></i>
+            <span>재생 중 화면 꺼짐 방지</span>
+          </div>
+          <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">음성 읽기 동작 중 핸드폰 화면이 자동으로 꺼지는 것을 방지합니다.</p>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer shrink-0">
+          <input type="checkbox" id="toggle-wake-lock" class="sr-only peer" checked>
+          <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
+        </label>
       </div>
 
       <!-- Voice Test Sound Button -->
@@ -353,8 +389,39 @@
         genderFilter: 'all', // 'all', 'female', 'male'
         rate: parseFloat(localStorage.getItem('tts_rate')) || 1.0,
         pitch: parseFloat(localStorage.getItem('tts_pitch')) || 1.0,
+        fontSize: parseInt(localStorage.getItem('tts_font_size')) || 16,
+        playerPos: localStorage.getItem('tts_player_pos') || 'bottom', // 'bottom' or 'top'
+        wakeLockEnabled: localStorage.getItem('tts_wake_lock') !== 'false',
         autoScroll: true
       };
+
+      // --- WAKE LOCK ENGINE ---
+      let wakeLockSentinel = null;
+
+      async function requestWakeLock() {
+        if ('wakeLock' in navigator && state.wakeLockEnabled) {
+          try {
+            if (!wakeLockSentinel) {
+              wakeLockSentinel = await navigator.wakeLock.request('screen');
+            }
+          } catch (err) {
+            console.warn('Wake Lock Error:', err);
+          }
+        }
+      }
+
+      function releaseWakeLock() {
+        if (wakeLockSentinel !== null) {
+          wakeLockSentinel.release().catch(() => {});
+          wakeLockSentinel = null;
+        }
+      }
+
+      document.addEventListener('visibilitychange', async () => {
+        if (document.visibilityState === 'visible' && state.isPlaying) {
+          await requestWakeLock();
+        }
+      });
 
       // --- SPEECH SYNTHESIS ENGINE ---
       const synth = window.speechSynthesis;
@@ -386,6 +453,11 @@
       const btnQuickVoice = document.getElementById('btn-quick-voice');
       const quickVoiceLabel = document.getElementById('quick-voice-label');
 
+      // Font & Layout Settings Elements
+      const inputFontSize = document.getElementById('input-font-size');
+      const valFontSize = document.getElementById('val-font-size');
+      const toggleWakeLock = document.getElementById('toggle-wake-lock');
+
       // Text Metadata UI
       const docTitle = document.getElementById('doc-title');
       const docProgressText = document.getElementById('doc-progress-text');
@@ -409,6 +481,51 @@
       loadHistoryFromStorage();
       initSpeechVoices();
       initTheme();
+      initLayoutAndSettings();
+
+      function initLayoutAndSettings() {
+        if (inputFontSize) inputFontSize.value = state.fontSize;
+        if (valFontSize) valFontSize.textContent = `${state.fontSize}px`;
+        if (toggleWakeLock) toggleWakeLock.checked = state.wakeLockEnabled;
+        if (inputRate) inputRate.value = state.rate;
+        if (valRate) valRate.textContent = `${state.rate.toFixed(1)}x`;
+        if (inputPitch) inputPitch.value = state.pitch;
+        if (valPitch) valPitch.textContent = state.pitch.toFixed(1);
+
+        updateFontSize();
+        updatePlayerPosition();
+      }
+
+      function updateFontSize() {
+        if (textWrapper) {
+          textWrapper.style.fontSize = `${state.fontSize}px`;
+        }
+        if (valFontSize) {
+          valFontSize.textContent = `${state.fontSize}px`;
+        }
+      }
+
+      function updatePlayerPosition() {
+        if (!playerBar || !readerScrollContainer || !btnScrollActive) return;
+
+        if (state.playerPos === 'top') {
+          playerBar.className = 'fixed top-[49px] left-0 right-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-xl p-3 sm:px-6 transition-all duration-300';
+          readerScrollContainer.className = 'flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 pt-36 pb-12 selection:bg-brand-200';
+          btnScrollActive.className = 'hidden absolute bottom-6 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 backdrop-blur shadow-lg flex items-center justify-center active:scale-95 transition-all z-10';
+        } else {
+          playerBar.className = 'fixed bottom-0 left-0 right-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 shadow-2xl p-3 sm:px-6 transition-all duration-300';
+          readerScrollContainer.className = 'flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 pb-36 selection:bg-brand-200';
+          btnScrollActive.className = 'hidden absolute bottom-28 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 backdrop-blur shadow-lg flex items-center justify-center active:scale-95 transition-all z-10';
+        }
+
+        document.querySelectorAll('.btn-pos-toggle').forEach(btn => {
+          if (btn.getAttribute('data-pos') === state.playerPos) {
+            btn.className = 'btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300';
+          } else {
+            btn.className = 'btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400';
+          }
+        });
+      }
 
       if (synth && synth.onvoiceschanged !== undefined) {
         synth.onvoiceschanged = initSpeechVoices;
@@ -806,6 +923,7 @@
 
       function closeReader() {
         stopSpeech();
+        releaseWakeLock();
         saveCurrentProgress();
         viewReader.classList.add('hidden');
         playerBar.classList.add('hidden');
@@ -833,6 +951,7 @@
         }
 
         stopSpeech();
+        requestWakeLock();
 
         const text = state.sentences[state.currentSentenceIdx];
         currentUtterance = new SpeechSynthesisUtterance(text);
@@ -856,6 +975,7 @@
             } else {
               state.isPlaying = false;
               state.isPaused = false;
+              releaseWakeLock();
               updatePlayButtonIcon();
               saveCurrentProgress();
             }
@@ -864,6 +984,7 @@
 
         currentUtterance.onerror = (err) => {
           console.warn('Speech error:', err);
+          releaseWakeLock();
         };
 
         synth.speak(currentUtterance);
@@ -871,6 +992,37 @@
         state.isPaused = false;
 
         updatePlaybackUI();
+        updatePlayButtonIcon();
+      }
+
+      function playSpeech() {
+        if (synth.paused && state.isPaused) {
+          synth.resume();
+          state.isPlaying = true;
+          state.isPaused = false;
+          requestWakeLock();
+          updatePlayButtonIcon();
+        } else {
+          speakCurrentSentence();
+        }
+      }
+
+      function pauseSpeech() {
+        if (synth.speaking) {
+          synth.pause();
+          state.isPlaying = false;
+          state.isPaused = true;
+          releaseWakeLock();
+          updatePlayButtonIcon();
+          saveCurrentProgress();
+        }
+      }
+
+      function stopSpeech() {
+        synth.cancel();
+        state.isPlaying = false;
+        state.isPaused = false;
+        releaseWakeLock();
         updatePlayButtonIcon();
       }
 
@@ -1021,35 +1173,35 @@
 
       document.querySelectorAll('.btn-close-modal').forEach(btn => {
         btn.addEventListener('click', () => {
-          closeModal(modalVoice);
-          closeModal(modalLibrary);
+      // Settings Control Handlers
+      if (inputFontSize) {
+        inputFontSize.addEventListener('input', (e) => {
+          state.fontSize = parseInt(e.target.value, 10);
+          localStorage.setItem('tts_font_size', state.fontSize);
+          updateFontSize();
         });
-      });
+      }
 
-      document.getElementById('btn-voice-settings').addEventListener('click', () => openModal(modalVoice));
-      btnQuickVoice.addEventListener('click', () => openModal(modalVoice));
-
-      document.getElementById('btn-library').addEventListener('click', () => {
-        renderLibraryList();
-        openModal(modalLibrary);
-      });
-
-      document.getElementById('btn-library-new-file').addEventListener('click', () => {
-        closeModal(modalLibrary);
-        closeReader();
-      });
-
-      document.querySelectorAll('.btn-gender-filter').forEach(btn => {
+      document.querySelectorAll('.btn-pos-toggle').forEach(btn => {
         btn.addEventListener('click', (e) => {
-          document.querySelectorAll('.btn-gender-filter').forEach(b => {
-            b.className = 'btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400';
-          });
-          e.target.className = 'btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300';
-          
-          state.genderFilter = e.target.getAttribute('data-gender');
-          populateVoiceSelect();
+          const pos = e.currentTarget.getAttribute('data-pos');
+          state.playerPos = pos;
+          localStorage.setItem('tts_player_pos', state.playerPos);
+          updatePlayerPosition();
         });
       });
+
+      if (toggleWakeLock) {
+        toggleWakeLock.addEventListener('change', (e) => {
+          state.wakeLockEnabled = e.target.checked;
+          localStorage.setItem('tts_wake_lock', state.wakeLockEnabled);
+          if (state.wakeLockEnabled && state.isPlaying) {
+            requestWakeLock();
+          } else {
+            releaseWakeLock();
+          }
+        });
+      }
 
       selectVoice.addEventListener('change', (e) => {
         state.selectedVoiceName = e.target.value;
