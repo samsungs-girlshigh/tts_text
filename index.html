@@ -1,83 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko" class="h-full">
 <head>
+  <base target="_top">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Smart Voice Text Reader</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts (Inter & Noto Sans KR) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Icons: inline SVG set (no external CDN dependency for icon rendering) -->
- 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Noto Sans KR', 'Inter', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f0f7ff',
-              100: '#e0effe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              900: '#1e3a8a',
-            }
-          }
-        }
-      }
-    }
-  </script>
- 
+
+  <!--
+    [배터리 절약] Tailwind CDN(브라우저에서 실시간으로 CSS를 만들고 화면 변화를 계속 감시함)과
+    웹폰트 대신, 미리 만들어 둔 CSS를 아래에 넣고 휴대폰 기본 글꼴을 사용합니다.
+  -->
+  <style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:system-ui,-apple-system,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.pointer-events-none{pointer-events:none}.pointer-events-auto{pointer-events:auto}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.bottom-0{bottom:0}.bottom-28{bottom:7rem}.bottom-6{bottom:1.5rem}.left-0{left:0}.left-1\/2{left:50%}.left-3{left:.75rem}.right-0{right:0}.right-2\.5{right:.625rem}.right-4{right:1rem}.top-0{top:0}.top-1\/2{top:50%}.top-4{top:1rem}.top-\[61px\]{top:61px}.z-10{z-index:10}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.ml-0\.5{margin-left:.125rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-8{margin-top:2rem}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1{height:.25rem}.h-1\.5{height:.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-16{height:4rem}.h-2{height:.5rem}.h-5{height:1.25rem}.h-9{height:2.25rem}.h-full{height:100%}.max-h-\[85vh\]{max-height:85vh}.min-h-\[160px\]{min-height:160px}.min-h-\[200px\]{min-height:200px}.w-10{width:2.5rem}.w-11\/12{width:91.666667%}.w-12{width:3rem}.w-16{width:4rem}.w-2{width:.5rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[50px\]{min-width:50px}.max-w-2xl{max-width:42rem}.max-w-\[130px\]{max-width:130px}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.-translate-y-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%}.-translate-y-2{--tw-translate-y:-0.5rem}.-translate-y-2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes spin{to{transform:rotate(1turn)}}.animate-spin{animation:spin 1s linear infinite}.cursor-pointer{cursor:pointer}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-2\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.625rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.625rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.rounded-t-3xl{border-top-left-radius:1.5rem;border-top-right-radius:1.5rem}.border{border-width:1px}.border-2{border-width:2px}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-brand-200{--tw-border-opacity:1;border-color:rgb(191 219 254/var(--tw-border-opacity,1))}.border-brand-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249/var(--tw-border-opacity,1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-200\/60{border-color:rgba(226,232,240,.6)}.border-slate-200\/70{border-color:rgba(226,232,240,.7)}.border-slate-200\/80{border-color:rgba(226,232,240,.8)}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.border-t-brand-600{--tw-border-opacity:1;border-top-color:rgb(37 99 235/var(--tw-border-opacity,1))}.bg-amber-200{--tw-bg-opacity:1;background-color:rgb(253 230 138/var(--tw-bg-opacity,1))}.bg-amber-400{--tw-bg-opacity:1;background-color:rgb(251 191 36/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-black\/60{background-color:rgba(0,0,0,.6)}.bg-brand-50{--tw-bg-opacity:1;background-color:rgb(240 247 255/var(--tw-bg-opacity,1))}.bg-brand-50\/50{background-color:rgba(240,247,255,.5)}.bg-brand-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-rose-100{--tw-bg-opacity:1;background-color:rgb(255 228 230/var(--tw-bg-opacity,1))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242/var(--tw-bg-opacity,1))}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94/var(--tw-bg-opacity,1))}.bg-rose-600{--tw-bg-opacity:1;background-color:rgb(225 29 72/var(--tw-bg-opacity,1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-100\/80{background-color:rgba(241,245,249,.8)}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240/var(--tw-bg-opacity,1))}.bg-slate-200\/80{background-color:rgba(226,232,240,.8)}.bg-slate-300{--tw-bg-opacity:1;background-color:rgb(203 213 225/var(--tw-bg-opacity,1))}.bg-slate-400{--tw-bg-opacity:1;background-color:rgb(148 163 184/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900\/80{background-color:rgba(15,23,42,.8)}.bg-slate-900\/95{background-color:rgba(15,23,42,.95)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-gradient-to-tr{background-image:linear-gradient(to top right,var(--tw-gradient-stops))}.from-brand-600{--tw-gradient-from:#2563eb var(--tw-gradient-from-position);--tw-gradient-to:rgba(37,99,235,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-indigo-500{--tw-gradient-to:#6366f1 var(--tw-gradient-to-position)}.p-0{padding:0}.p-1{padding:.25rem}.p-1\.5{padding:.375rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.p-3\.5{padding:.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-0\.5{padding-left:.125rem;padding-right:.125rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-12{padding-bottom:3rem}.pb-3{padding-bottom:.75rem}.pb-36{padding-bottom:9rem}.pl-9{padding-left:2.25rem}.pr-1{padding-right:.25rem}.pr-2{padding-right:.5rem}.pr-9{padding-right:2.25rem}.pt-1{padding-top:.25rem}.pt-1\.5{padding-top:.375rem}.pt-2{padding-top:.5rem}.pt-36{padding-top:9rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.align-\[-0\.125em\]{vertical-align:-.125em}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:system-ui,-apple-system,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[12px\]{font-size:12px}.text-\[9px\]{font-size:9px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-normal{letter-spacing:0}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11/var(--tw-text-opacity,1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.text-brand-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129/var(--tw-text-opacity,1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105/var(--tw-text-opacity,1))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94/var(--tw-text-opacity,1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-white\/80{color:hsla(0,0%,100%,.8)}.underline{text-decoration-line:underline}.decoration-dotted{text-decoration-style:dotted}.underline-offset-2{text-underline-offset:2px}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.accent-brand-600{accent-color:#2563eb}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-lg{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-md{--tw-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color)}.shadow-md,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-brand-500\/20{--tw-shadow-color:rgba(59,130,246,.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-brand-500\/25{--tw-shadow-color:rgba(59,130,246,.25);--tw-shadow:var(--tw-shadow-colored)}.shadow-brand-500\/30{--tw-shadow-color:rgba(59,130,246,.3);--tw-shadow:var(--tw-shadow-colored)}.outline-none{outline:2px solid transparent;outline-offset:2px}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-200{transition-duration:.2s}.duration-300{transition-duration:.3s}.selection\:bg-brand-200 ::-moz-selection{--tw-bg-opacity:1;background-color:rgb(191 219 254/var(--tw-bg-opacity,1))}.selection\:bg-brand-200 ::selection{--tw-bg-opacity:1;background-color:rgb(191 219 254/var(--tw-bg-opacity,1))}.selection\:bg-brand-500 ::-moz-selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:bg-brand-500 ::selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:text-white ::-moz-selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:text-white ::selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:bg-brand-200::-moz-selection{--tw-bg-opacity:1;background-color:rgb(191 219 254/var(--tw-bg-opacity,1))}.selection\:bg-brand-200::selection{--tw-bg-opacity:1;background-color:rgb(191 219 254/var(--tw-bg-opacity,1))}.selection\:bg-brand-500::-moz-selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:bg-brand-500::selection{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.selection\:text-white::-moz-selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.after\:absolute:after{content:var(--tw-content);position:absolute}.after\:left-\[2px\]:after{content:var(--tw-content);left:2px}.after\:top-\[2px\]:after{content:var(--tw-content);top:2px}.after\:h-4:after{content:var(--tw-content);height:1rem}.after\:w-4:after{content:var(--tw-content);width:1rem}.after\:rounded-full:after{content:var(--tw-content);border-radius:9999px}.after\:border:after{content:var(--tw-content);border-width:1px}.after\:border-slate-300:after{content:var(--tw-content);--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.after\:bg-white:after{content:var(--tw-content);--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.after\:transition-all:after{content:var(--tw-content);transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.after\:content-\[\'\'\]:after{--tw-content:"";content:var(--tw-content)}.hover\:border-amber-500:hover{--tw-border-opacity:1;border-color:rgb(245 158 11/var(--tw-border-opacity,1))}.hover\:border-brand-500:hover{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.hover\:bg-amber-100:hover{--tw-bg-opacity:1;background-color:rgb(254 243 199/var(--tw-bg-opacity,1))}.hover\:bg-brand-100:hover{--tw-bg-opacity:1;background-color:rgb(224 239 254/var(--tw-bg-opacity,1))}.hover\:bg-brand-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216/var(--tw-bg-opacity,1))}.hover\:bg-rose-700:hover{--tw-bg-opacity:1;background-color:rgb(190 18 60/var(--tw-bg-opacity,1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240/var(--tw-bg-opacity,1))}.hover\:bg-slate-200\/60:hover{background-color:rgba(226,232,240,.6)}.hover\:bg-slate-300:hover{--tw-bg-opacity:1;background-color:rgb(203 213 225/var(--tw-bg-opacity,1))}.hover\:text-brand-600:hover{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.hover\:text-rose-500:hover{--tw-text-opacity:1;color:rgb(244 63 94/var(--tw-text-opacity,1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.hover\:underline:hover{text-decoration-line:underline}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-brand-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246/var(--tw-ring-opacity,1))}.active\:scale-90:active{--tw-scale-x:.9;--tw-scale-y:.9}.active\:scale-90:active,.active\:scale-95:active{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\:bg-brand-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.peer:checked~.peer-checked\:after\:translate-x-full:after{content:var(--tw-content);--tw-translate-x:100%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\:after\:border-white:after{content:var(--tw-content);--tw-border-opacity:1;border-color:rgb(255 255 255/var(--tw-border-opacity,1))}.peer:focus~.peer-focus\:outline-none{outline:2px solid transparent;outline-offset:2px}.dark\:block:is(.dark *){display:block}.dark\:hidden:is(.dark *){display:none}.dark\:border-slate-700:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.dark\:border-slate-700\/80:is(.dark *){border-color:rgba(51,65,85,.8)}.dark\:border-slate-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.dark\:border-slate-800\/70:is(.dark *){border-color:rgba(30,41,59,.7)}.dark\:border-t-brand-500:is(.dark *){--tw-border-opacity:1;border-top-color:rgb(59 130 246/var(--tw-border-opacity,1))}.dark\:bg-amber-500\/40:is(.dark *){background-color:rgba(245,158,11,.4)}.dark\:bg-amber-900\/30:is(.dark *){background-color:rgba(120,53,15,.3)}.dark\:bg-brand-900\/30:is(.dark *){background-color:rgba(30,58,138,.3)}.dark\:bg-brand-900\/40:is(.dark *){background-color:rgba(30,58,138,.4)}.dark\:bg-rose-900\/30:is(.dark *){background-color:rgba(136,19,55,.3)}.dark\:bg-slate-100\/90:is(.dark *){background-color:rgba(241,245,249,.9)}.dark\:bg-slate-100\/95:is(.dark *){background-color:rgba(241,245,249,.95)}.dark\:bg-slate-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85/var(--tw-bg-opacity,1))}.dark\:bg-slate-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.dark\:bg-slate-800\/60:is(.dark *){background-color:rgba(30,41,59,.6)}.dark\:bg-slate-800\/80:is(.dark *){background-color:rgba(30,41,59,.8)}.dark\:bg-slate-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.dark\:bg-slate-900\/50:is(.dark *){background-color:rgba(15,23,42,.5)}.dark\:bg-slate-900\/80:is(.dark *){background-color:rgba(15,23,42,.8)}.dark\:bg-slate-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.dark\:text-amber-300:is(.dark *){--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.dark\:text-amber-600:is(.dark *){--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.dark\:text-emerald-400:is(.dark *){--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.dark\:text-rose-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 113 133/var(--tw-text-opacity,1))}.dark\:text-slate-100:is(.dark *){--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.dark\:text-slate-200:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.dark\:text-slate-300:is(.dark *){--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.dark\:text-slate-400:is(.dark *){--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.dark\:text-slate-500:is(.dark *){--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.dark\:text-slate-700:is(.dark *){--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.dark\:text-slate-900:is(.dark *){--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity,1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.dark\:hover\:border-brand-500:hover:is(.dark *){--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.dark\:hover\:bg-slate-700:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85/var(--tw-bg-opacity,1))}.dark\:hover\:bg-slate-800:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.dark\:hover\:bg-slate-800\/60:hover:is(.dark *){background-color:rgba(30,41,59,.6)}.dark\:hover\:text-slate-200:hover:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:inline{display:inline}.sm\:max-w-\[180px\]{max-width:180px}.sm\:max-w-\[240px\]{max-width:240px}.sm\:max-w-md{max-width:28rem}.sm\:items-center{align-items:center}.sm\:gap-4{gap:1rem}.sm\:rounded-3xl{border-radius:1.5rem}.sm\:p-4{padding:1rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}</style>
+
   <style>
-    /* Custom Scrollbar for sleek mobile UX */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(156, 163, 175, 0.4);
-      border-radius: 9999px;
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 9999px; }
     .sentence-active {
       background-color: rgba(59, 130, 246, 0.18);
       border-left: 4px solid #3b82f6;
       border-radius: 0 8px 8px 0;
-      transition: all 0.2s ease;
     }
     .dark .sentence-active {
       background-color: rgba(59, 130, 246, 0.28);
       border-left-color: #60a5fa;
     }
-    /* Touch optimization */
-    .touch-target {
-      min-height: 44px;
-      min-width: 44px;
-    }
-    /* Bookmarked sentence marker (small ribbon on the right edge).
-       font-size: inherit lets each sentence follow the wrapper's font-size
-       (set once via #text-content-wrapper) instead of needing its own
-       inline style — this removes the need to loop over every sentence
-       whenever the font-size slider changes. */
+    .touch-target { min-height: 44px; min-width: 44px; }
     .sentence-item {
       position: relative;
       font-size: inherit;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       user-select: none;
+      /* [배터리 절약] 화면 밖 문장은 그리지 않음 (긴 책일수록 효과 큼) */
+      content-visibility: auto;
+      contain-intrinsic-size: auto 64px;
     }
+    /* [배터리 절약] 절전 화면: OLED 화면에서 검은색은 전기를 거의 쓰지 않음 */
+    #saver-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: #000;
+      touch-action: manipulation;
+    }
+    #saver-info {
+      position: absolute;
+      color: #3d3d3d;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      transition: color 0.3s;
+    }
+    #saver-info.saver-hint { color: #9a9a9a; }
     .sentence-bookmarked::after {
       content: '';
       position: absolute;
@@ -91,19 +68,22 @@
   </style>
 </head>
 <body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200 antialiased selection:bg-brand-500 selection:text-white">
- 
+
   <!-- Top Navigation Header -->
-  <header class="sticky top-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between shrink-0">
-    <div class="flex items-center gap-2">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+  <header class="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-2 min-w-0">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 shrink-0">
         <i class="ph-bold ph-speaker-high text-xl"></i>
       </div>
-      <div>
+      <div class="min-w-0">
         <h1 class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-white">VoiceReader</h1>
-        <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">TXT Voice Reader</p>
+        <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1 mt-0.5 max-w-[130px] sm:max-w-[240px]">
+          <span id="sync-dot" class="w-2 h-2 rounded-full bg-slate-300 shrink-0" title="연결 확인 중"></span>
+          <span id="user-email" class="truncate">로그인 확인 중…</span>
+        </p>
       </div>
     </div>
- 
+
     <!-- Actions -->
     <div class="flex items-center gap-1">
       <button id="btn-search" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition-all flex items-center gap-1.5 text-xs font-semibold" title="본문에서 찾기">
@@ -122,23 +102,29 @@
         <span class="hidden sm:inline">서재</span>
         <span id="badge-file-count" class="hidden bg-brand-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
       </button>
- 
+
       <button id="btn-theme" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition-all" title="테마 변경">
         <i class="ph-bold ph-moon text-lg dark:hidden"></i>
         <i class="ph-bold ph-sun text-lg hidden dark:block text-amber-400"></i>
       </button>
- 
+
       <button id="btn-voice-settings" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 transition-all" title="음성 설정">
         <i class="ph-bold ph-sliders-horizontal text-lg"></i>
       </button>
     </div>
   </header>
- 
+
   <!-- Main View Area -->
   <main class="flex-1 overflow-hidden relative flex flex-col">
-    
+
+    <!-- State 0: Loading (first screen while checking login & last-read book) -->
+    <section id="view-loading" class="flex-1 flex flex-col items-center justify-center p-6 text-center gap-3">
+      <div class="w-10 h-10 border-4 border-brand-200 dark:border-slate-700 border-t-brand-600 dark:border-t-brand-500 rounded-full animate-spin"></div>
+      <p id="loading-text" class="text-xs text-slate-500 dark:text-slate-400 font-medium">읽던 책을 불러오는 중…</p>
+    </section>
+
     <!-- State 1: Upload Empty State -->
-    <section id="view-upload" class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-md mx-auto w-full">
+    <section id="view-upload" class="hidden flex-1 flex flex-col items-center justify-center p-6 text-center max-w-md mx-auto w-full">
       <div id="drop-zone" class="w-full border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 rounded-3xl p-8 bg-white dark:bg-slate-900 transition-all cursor-pointer group shadow-sm flex flex-col items-center justify-center">
         <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
           <i class="ph-duotone ph-file-text text-3xl"></i>
@@ -147,7 +133,7 @@
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
           핸드폰에 있는 텍스트(.txt) 파일을 선택하거나<br/>이곳에 드래그하여 올려주세요.
         </p>
- 
+
         <label class="w-full">
           <span class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold shadow-lg shadow-brand-500/25 active:scale-98 transition-all cursor-pointer">
             <i class="ph-bold ph-upload-simple"></i>
@@ -156,26 +142,26 @@
           <input type="file" id="input-file" accept=".txt,text/plain" class="hidden" />
         </label>
       </div>
- 
+
       <!-- Quick Tips -->
       <div class="mt-8 text-left w-full space-y-2 bg-slate-100 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-800">
         <div class="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
           <i class="ph-bold ph-sparkle text-amber-500"></i> 주요 스마트 기능
         </div>
         <ul class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1 list-disc list-inside">
+          <li><b>어느 기기에서든 읽던 위치부터 이어서 읽기</b> (Google 계정 동기화)</li>
           <li>한글 깨짐 자동 방지 (UTF-8, EUC-KR/ANSI 자동 감지)</li>
           <li>남성/여성 음성 자유 선택 지원</li>
-          <li>읽다 멈춘 문장 위치 **자동 기억 및 이어서 읽기**</li>
           <li>현재 읽는 위치 실시간 하이라이팅 및 자동 스크롤</li>
           <li>문장을 터치하여 바로 해당 위치부터 재생</li>
           <li>문장을 길게 눌러 <b>책갈피 저장</b> 및 바로 이동</li>
         </ul>
       </div>
     </section>
- 
+
     <!-- State 2: Reader Active View -->
     <section id="view-reader" class="hidden flex-1 flex flex-col h-full overflow-hidden relative">
-      
+
       <!-- Document Header Bar -->
       <div class="px-4 py-2.5 bg-slate-100/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs shrink-0 gap-2 flex-wrap">
         <div class="flex items-center gap-2 min-w-0 pr-2">
@@ -185,7 +171,6 @@
           <span id="doc-title" class="font-semibold truncate text-slate-800 dark:text-slate-200">파일명.txt</span>
         </div>
         <div class="flex items-center gap-2 text-[11px] font-mono shrink-0">
-          <!-- Encoding Toggle Button -->
           <button id="btn-encoding-toggle" class="bg-slate-200/80 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 px-2 py-0.5 rounded-md text-[10px] text-slate-700 dark:text-slate-300 font-bold transition-colors flex items-center gap-1" title="클릭하여 인코딩 방식 수동 변경">
             <i class="ph-bold ph-globe-hemisphere-west text-brand-600 dark:text-brand-400"></i>
             <span id="label-encoding">UTF-8</span>
@@ -198,85 +183,87 @@
           </button>
         </div>
 
-        <!-- Go-to-sentence inline form (hidden by default, toggled via btn-goto-toggle) -->
         <div id="goto-form" class="hidden w-full flex items-center gap-2 pt-1.5 border-t border-slate-200/70 dark:border-slate-800/70 mt-0.5">
           <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold shrink-0">문장 번호로 이동</span>
           <input type="number" id="input-goto-sentence" min="1" placeholder="예: 42" class="flex-1 min-w-0 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-medium text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-brand-500 outline-none" />
           <button id="btn-goto-go" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shrink-0 transition-colors">이동</button>
         </div>
       </div>
- 
+
       <!-- Text Display Scroll Box -->
       <div id="reader-scroll-container" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 pb-36 selection:bg-brand-200">
         <div id="text-content-wrapper" class="max-w-2xl mx-auto space-y-2 text-base leading-relaxed text-slate-800 dark:text-slate-200 font-normal tracking-normal">
-          <!-- Dynamically populated sentences -->
         </div>
       </div>
- 
-      <!-- Floating Button: Scroll to Active Sentence -->
-      <button id="btn-scroll-active" class="hidden absolute bottom-28 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 backdrop-blur shadow-lg flex items-center justify-center active:scale-95 transition-all z-10" title="현재 읽는 위치로 이동">
+
+      <button id="btn-scroll-active" class="hidden absolute bottom-28 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 shadow-lg flex items-center justify-center active:scale-95 transition-all z-10" title="현재 읽는 위치로 이동">
         <i class="ph-bold ph-target text-lg"></i>
       </button>
 
-      <!-- Toast: Bookmark Added Confirmation (contextual, positioned near touch point) -->
       <div id="bookmark-toast" class="hidden fixed z-40 bg-slate-900/95 dark:bg-slate-100/95 text-white dark:text-slate-900 text-xs font-bold px-3 py-2 rounded-xl shadow-xl items-center gap-1.5 pointer-events-none">
         <i class="ph-bold ph-bookmark-simple text-amber-400 dark:text-amber-600"></i>
         <span>책갈피에 저장했어요</span>
       </div>
- 
+
     </section>
   </main>
- 
-  <!-- Bottom Sticky Audio Control Bar (Visible when document loaded) -->
-  <footer id="player-bar" class="hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 shadow-2xl p-3 sm:px-6 transition-transform duration-300">
+
+  <!-- Bottom Sticky Audio Control Bar -->
+  <footer id="player-bar" class="hidden fixed bottom-0 left-0 right-0 z-30 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-2xl p-3 sm:px-6 transition-transform duration-300">
     <div class="max-w-2xl mx-auto flex flex-col gap-2">
-      
-      <!-- Progress Bar Slider -->
+
       <div class="flex items-center gap-3">
         <span id="player-time-curr" class="text-[10px] font-mono text-slate-500 w-8 text-right">0</span>
         <input type="range" id="progress-range" min="0" max="100" value="0" step="1" class="flex-1 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-600" />
         <span id="player-time-total" class="text-[10px] font-mono text-slate-500 w-8">0</span>
       </div>
- 
-      <!-- Player Buttons & Meta -->
+
       <div class="flex items-center justify-between gap-2 pt-1">
-        
-        <!-- Current Voice Badge / Fast Selector -->
         <button id="btn-quick-voice" class="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2.5 py-1.5 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors max-w-[130px] sm:max-w-[180px]">
           <i id="quick-voice-icon" class="ph-bold ph-user-circle text-base text-brand-600"></i>
           <span id="quick-voice-label" class="truncate font-medium text-[11px]">음성 선택</span>
           <i class="ph-bold ph-caret-up text-[10px] text-slate-400"></i>
         </button>
- 
-        <!-- Main Controls (Prev, Play/Pause, Next) -->
+
         <div class="flex items-center gap-3 sm:gap-4">
           <button id="btn-prev-sentence" class="p-2 text-slate-700 dark:text-slate-200 hover:text-brand-600 active:scale-90 transition-all touch-target flex items-center justify-center" title="이전 문장">
             <i class="ph-bold ph-skip-back text-2xl"></i>
           </button>
- 
+
           <button id="btn-play-pause" class="w-12 h-12 rounded-full bg-brand-600 hover:bg-brand-700 text-white flex items-center justify-center shadow-lg shadow-brand-500/30 active:scale-95 transition-all touch-target" title="재생 / 일시정지">
             <i id="icon-play" class="ph-bold ph-play text-2xl ml-0.5"></i>
             <i id="icon-pause" class="ph-bold ph-pause text-2xl hidden"></i>
           </button>
- 
+
           <button id="btn-next-sentence" class="p-2 text-slate-700 dark:text-slate-200 hover:text-brand-600 active:scale-90 transition-all touch-target flex items-center justify-center" title="다음 문장">
             <i class="ph-bold ph-skip-forward text-2xl"></i>
           </button>
         </div>
- 
-        <!-- Speed Selector Toggle -->
-        <button id="btn-speed" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all text-[11px] min-w-[50px] text-center" title="재생 속도">
-          1.0x
-        </button>
- 
+
+        <div class="flex items-center gap-1.5">
+          <button id="btn-saver" class="p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all" title="절전 화면 (검은 화면으로 계속 듣기)">
+            <i class="ph-bold ph-battery text-lg text-emerald-600 dark:text-emerald-400"></i>
+          </button>
+          <button id="btn-speed" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all text-[11px] min-w-[50px] text-center" title="재생 속도">
+            1.0x
+          </button>
+        </div>
       </div>
     </div>
   </footer>
- 
+
+  <!-- Battery Saver Overlay (pure black screen while listening) -->
+  <div id="saver-overlay" class="hidden" aria-label="절전 화면">
+    <div id="saver-info" style="left:50%;top:50%">
+      <div id="saver-progress">0 / 0</div>
+      <div>두 번 탭하면 돌아갑니다</div>
+    </div>
+  </div>
+
   <!-- Modal 1: Voice & TTS Settings Modal -->
-  <div id="modal-voice" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
+  <div id="modal-voice" class="fixed inset-0 z-50 bg-black/60 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
     <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-5 max-h-[85vh] overflow-y-auto">
-      
+
       <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
         <div class="flex items-center gap-2">
           <i class="ph-bold ph-sliders-horizontal text-xl text-brand-600"></i>
@@ -286,32 +273,21 @@
           <i class="ph-bold ph-x text-lg"></i>
         </button>
       </div>
- 
-      <!-- Gender Filter Buttons -->
+
       <div class="space-y-2">
         <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">음성 성별 필터</label>
         <div class="grid grid-cols-3 gap-2">
-          <button data-gender="all" class="btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300">
-            전체
-          </button>
-          <button data-gender="female" class="btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">
-            👩 여성 음성
-          </button>
-          <button data-gender="male" class="btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">
-            👨 남성 음성
-          </button>
+          <button data-gender="all" class="btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300">전체</button>
+          <button data-gender="female" class="btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">👩 여성 음성</button>
+          <button data-gender="male" class="btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">👨 남성 음성</button>
         </div>
       </div>
- 
-      <!-- Voice Selector Dropdown -->
+
       <div class="space-y-2">
         <label for="select-voice" class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">사용 가능한 음성 목록</label>
-        <select id="select-voice" class="w-full p-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-medium text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-brand-500 outline-none">
-          <!-- Dynamically populated -->
-        </select>
+        <select id="select-voice" class="w-full p-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-medium text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-brand-500 outline-none"></select>
       </div>
- 
-      <!-- Speed & Pitch Sliders -->
+
       <div class="space-y-4 pt-2">
         <div>
           <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
@@ -320,7 +296,7 @@
           </div>
           <input type="range" id="input-font-size" min="12" max="28" step="1" value="16" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none accent-brand-600 cursor-pointer" />
         </div>
- 
+
         <div>
           <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
             <span>재생 속도 (Speed)</span>
@@ -328,7 +304,7 @@
           </div>
           <input type="range" id="input-rate" min="0.5" max="2.0" step="0.1" value="1.0" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none accent-brand-600 cursor-pointer" />
         </div>
- 
+
         <div>
           <div class="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
             <span>음높이 (Pitch)</span>
@@ -337,21 +313,15 @@
           <input type="range" id="input-pitch" min="0.5" max="1.5" step="0.1" value="1.0" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none accent-brand-600 cursor-pointer" />
         </div>
       </div>
- 
-      <!-- Player Bar Position Setting -->
+
       <div class="space-y-2">
         <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">플레이어 위치 설정</label>
         <div class="grid grid-cols-2 gap-2">
-          <button id="btn-pos-bottom" data-pos="bottom" class="btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300">
-            ⬇️ 화면 하단 고정
-          </button>
-          <button id="btn-pos-top" data-pos="top" class="btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">
-            ⬆️ 화면 상단 고정
-          </button>
+          <button id="btn-pos-bottom" data-pos="bottom" class="btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300">⬇️ 화면 하단 고정</button>
+          <button id="btn-pos-top" data-pos="top" class="btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400">⬆️ 화면 상단 고정</button>
         </div>
       </div>
- 
-      <!-- Screen Wake Lock Option -->
+
       <div class="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200/80 dark:border-slate-700/80">
         <div class="pr-2">
           <div class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
@@ -365,24 +335,34 @@
           <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
         </label>
       </div>
- 
-      <!-- Voice Test Sound Button -->
+
+      <div class="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200/80 dark:border-slate-700/80">
+        <div class="pr-2">
+          <div class="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+            <i class="ph-bold ph-battery text-emerald-500 text-sm"></i>
+            <span>자동 절전 화면</span>
+          </div>
+          <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">재생 중 30초 동안 화면을 만지지 않으면 검은 화면으로 바꿔 배터리를 아낍니다. (소리는 계속 나옵니다)</p>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer shrink-0">
+          <input type="checkbox" id="toggle-auto-saver" class="sr-only peer" checked>
+          <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
+        </label>
+      </div>
+
       <button id="btn-test-voice" class="w-full py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center justify-center gap-2 transition-colors">
         <i class="ph-bold ph-speaker-high"></i>
         선택한 음성 미리듣기
       </button>
- 
-      <button class="btn-close-modal w-full py-3 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md">
-        설정 완료
-      </button>
- 
+
+      <button class="btn-close-modal w-full py-3 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md">설정 완료</button>
     </div>
   </div>
- 
-  <!-- Modal 2: Reading History / Library Modal -->
-  <div id="modal-library" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
+
+  <!-- Modal 2: Library Modal -->
+  <div id="modal-library" class="fixed inset-0 z-50 bg-black/60 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
     <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 max-h-[85vh] flex flex-col">
-      
+
       <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 shrink-0">
         <div class="flex items-center gap-2">
           <i class="ph-bold ph-books text-xl text-brand-600"></i>
@@ -392,30 +372,25 @@
           <i class="ph-bold ph-x text-lg"></i>
         </button>
       </div>
- 
-      <!-- Library Search & Clear -->
+
       <div class="flex items-center justify-between text-xs shrink-0">
         <span class="text-slate-500 font-medium">저장된 파일 총 <b id="library-count" class="text-slate-800 dark:text-slate-200">0</b>개</span>
         <button id="btn-clear-history" class="text-rose-500 hover:underline font-semibold text-[11px]">전체 삭제</button>
       </div>
- 
-      <!-- History Item List Container -->
-      <div id="library-list-container" class="flex-1 overflow-y-auto space-y-2.5 pr-1 min-h-[200px]">
-        <!-- Dynamically populated history cards -->
-      </div>
- 
+
+      <div id="library-list-container" class="flex-1 overflow-y-auto space-y-2.5 pr-1 min-h-[200px]"></div>
+
       <div class="pt-2 shrink-0">
         <button id="btn-library-new-file" class="w-full py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs flex items-center justify-center gap-2 transition-colors">
           <i class="ph-bold ph-plus-circle text-base text-brand-600"></i>
           새 TXT 파일 올리기
         </button>
       </div>
- 
     </div>
   </div>
 
   <!-- Modal 3: Bookmarks List Modal -->
-  <div id="modal-bookmarks" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
+  <div id="modal-bookmarks" class="fixed inset-0 z-50 bg-black/60 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
     <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 max-h-[85vh] flex flex-col">
 
       <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 shrink-0">
@@ -428,26 +403,21 @@
         </button>
       </div>
 
-      <!-- Bookmark scope + clear -->
       <div class="flex items-center justify-between text-xs shrink-0">
         <span class="text-slate-500 font-medium">이 파일의 책갈피 <b id="bookmark-count" class="text-slate-800 dark:text-slate-200">0</b>개</span>
         <button id="btn-clear-bookmarks" class="text-rose-500 hover:underline font-semibold text-[11px]">이 파일 책갈피 전체 삭제</button>
       </div>
 
-      <!-- Bookmark Item List Container -->
-      <div id="bookmark-list-container" class="flex-1 overflow-y-auto space-y-2.5 pr-1 min-h-[160px]">
-        <!-- Dynamically populated bookmark cards -->
-      </div>
+      <div id="bookmark-list-container" class="flex-1 overflow-y-auto space-y-2.5 pr-1 min-h-[160px]"></div>
 
       <div class="pt-1 shrink-0">
         <p class="text-[10px] text-center text-slate-400 dark:text-slate-500">문장을 길게 눌러(약 0.5초) 책갈피를 추가할 수 있어요.</p>
       </div>
-
     </div>
   </div>
 
   <!-- Modal 4: Find-in-Text Modal -->
-  <div id="modal-search" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
+  <div id="modal-search" class="fixed inset-0 z-50 bg-black/60 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden opacity-0 transition-opacity duration-200">
     <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 max-h-[85vh] flex flex-col">
 
       <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 shrink-0">
@@ -460,7 +430,6 @@
         </button>
       </div>
 
-      <!-- Search Input -->
       <div class="relative shrink-0">
         <i class="ph-bold ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
         <input type="text" id="input-search-text" placeholder="검색어를 입력하세요" autocomplete="off" class="w-full pl-9 pr-9 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-medium text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-brand-500 outline-none" />
@@ -469,28 +438,40 @@
         </button>
       </div>
 
-      <!-- Result count -->
       <div id="search-result-summary" class="text-xs text-slate-500 dark:text-slate-400 font-medium shrink-0"></div>
 
-      <!-- Search Result List Container -->
       <div id="search-result-container" class="flex-1 overflow-y-auto space-y-2 pr-1 min-h-[200px]">
-        <div class="text-center py-8 text-slate-400 text-xs">
-          검색어를 입력하면 일치하는 문장이 여기에 표시됩니다.
-        </div>
+        <div class="text-center py-8 text-slate-400 text-xs">검색어를 입력하면 일치하는 문장이 여기에 표시됩니다.</div>
       </div>
-
     </div>
   </div>
- 
+
   <script>
     /**
-     * Smart TXT Voice Reader Application Core Logic
+     * Smart TXT Voice Reader — Google Apps Script 동기화 버전
+     *
+     * - 로그인: Google 계정 (웹 앱을 "액세스하는 사용자"로 실행하므로 브라우저의
+     *   Google 로그인이 그대로 유지·기억됩니다)
+     * - 서버(Apps Script): 책 본문, 읽던 위치, 책갈피 → 어떤 기기에서도 이어 읽기
+     * - 이 기기(IndexedDB): 책 본문 캐시 (다시 열 때 빠르게), 오프라인 대비
+     * - 첫 화면: 마지막으로 읽던 책의 읽던 위치. 읽던 책이 없으면 업로드 화면.
      */
- 
-    // --- INLINE ICON SET (replaces external Phosphor Icons CDN) ---
-    // Renders simple line-style SVGs in place of <i class="ph-... ph-<name>"> tags,
-    // preserving any existing classes (size, color, dark: variants, etc).
+
+    // --- SAFE LOCAL STORAGE ---
+    // Apps Script 페이지는 googleusercontent.com 아래 iframe 안에서 열립니다.
+    // iPhone(Safari)이나 일부 브라우저는 이 iframe의 저장소를 막거나 지워버려서
+    // 속도 같은 설정이 매번 초기값(1배속)으로 돌아갔습니다.
+    // 그래서 저장소는 '빠른 임시 보관'으로만 쓰고, 설정의 원본은 서버(saveSettings)에 둡니다.
+    function lsGet(key) {
+      try { return window.localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function lsSet(key, value) {
+      try { window.localStorage.setItem(key, String(value)); } catch (e) { /* 저장소 차단됨: 무시 */ }
+    }
+
+    // --- INLINE ICON SET ---
     const ICON_PATHS = {
+      'battery': '<rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 10.5v3M9.5 10.5v3"/>',
       'speaker-high': '<path d="M11 5 6 9H2v6h4l5 4Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>',
       'books': '<path d="M4 4h4v16H4z"/><path d="M10 4h4v16h-4z"/><path d="m17 5 3.5 15-4 .9L13 6Z"/>',
       'moon': '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/>',
@@ -515,14 +496,14 @@
       'bookmark-simple': '<path d="M6 3.5h12a.5.5 0 0 1 .5.5v16.2a.4.4 0 0 1-.63.33L12 16.5l-5.87 4.03a.4.4 0 0 1-.63-.33V4a.5.5 0 0 1 .5-.5Z"/>',
       'magnifying-glass': '<circle cx="11" cy="11" r="7"/><path d="m20 20-4.3-4.3"/>'
     };
- 
+
     function renderIcon(el) {
-      const cls = el.className.baseVal !== undefined ? '' : (el.getAttribute('class') || '');
-      const names = cls.split(/\s+/).filter(c => c.startsWith('ph-') && c !== 'ph-bold' && c !== 'ph-duotone' && c !== 'ph-fill' && c !== 'ph-light' && c !== 'ph-thin');
+      const cls = el.getAttribute('class') || '';
+      const names = cls.split(/\s+/).filter(c => c.startsWith('ph-') && !['ph-bold', 'ph-duotone', 'ph-fill', 'ph-light', 'ph-thin'].includes(c));
       const iconName = names.length ? names[0].replace(/^ph-/, '') : null;
       const svgInner = iconName && ICON_PATHS[iconName];
       if (!svgInner) return;
- 
+
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('viewBox', '0 0 24 24');
       svg.setAttribute('fill', 'none');
@@ -532,185 +513,137 @@
       svg.setAttribute('stroke-linejoin', 'round');
       svg.setAttribute('aria-hidden', 'true');
       svg.innerHTML = svgInner;
- 
-      // Carry over the original element's id (code looks these up via getElementById)
-      // and classes (sizing/color/dark: utilities) so nothing downstream breaks.
       const id = el.getAttribute('id');
       if (id) svg.setAttribute('id', id);
       svg.setAttribute('class', cls + ' inline-block align-[-0.125em]');
       svg.style.width = '1em';
       svg.style.height = '1em';
- 
       el.replaceWith(svg);
     }
- 
+
     function renderAllIcons(root = document) {
       root.querySelectorAll('i[class*="ph-"]').forEach(renderIcon);
     }
- 
+
     document.addEventListener('DOMContentLoaded', () => {
- 
-      // Replace all icon placeholders with inline SVG (no external icon font/CDN needed)
+
       renderAllIcons();
 
       // ============================================================
-      // --- INDEXEDDB STORAGE LAYER ---
-      // Replaces the previous localStorage-based document history.
-      // DB: voice_reader_db
-      //   store "documents": { id, name, content, encoding, sentences,
-      //                        currentIdx, totalSentences, lastReadAt }
-      //   store "bookmarks": { id (auto), docId, sentenceIdx, snippet, createdAt }
+      // --- SERVER BRIDGE (Google Apps Script) ---
+      // google.script.run 을 Promise 로 감싸서 사용합니다.
+      // Apps Script 밖(일반 웹서버)에서 열면 HAS_GAS=false → 이 기기 전용 모드.
       // ============================================================
-      const IDB_NAME = 'voice_reader_db';
-      const IDB_VERSION = 1;
-      const STORE_DOCS = 'documents';
-      const STORE_BOOKMARKS = 'bookmarks';
-      const LEGACY_LS_KEY = 'voice_reader_history_v1'; // old localStorage key, migrated once
+      const HAS_GAS = typeof google !== 'undefined' && google.script && google.script.run;
+      let serverOnline = !!HAS_GAS;
 
-      let idbInstance = null;
-
-      function openDB() {
+      function gas(fnName, ...args) {
         return new Promise((resolve, reject) => {
-          if (idbInstance) return resolve(idbInstance);
-          if (!('indexedDB' in window)) {
-            reject(new Error('IndexedDB not supported'));
-            return;
-          }
-          const req = indexedDB.open(IDB_NAME, IDB_VERSION);
-
-          req.onupgradeneeded = (event) => {
-            const db = event.target.result;
-            if (!db.objectStoreNames.contains(STORE_DOCS)) {
-              db.createObjectStore(STORE_DOCS, { keyPath: 'id' });
-            }
-            if (!db.objectStoreNames.contains(STORE_BOOKMARKS)) {
-              const bmStore = db.createObjectStore(STORE_BOOKMARKS, { keyPath: 'id', autoIncrement: true });
-              bmStore.createIndex('docId', 'docId', { unique: false });
-            }
-          };
-
-          req.onsuccess = (event) => {
-            idbInstance = event.target.result;
-            resolve(idbInstance);
-          };
-
-          req.onerror = (event) => {
-            reject(event.target.error);
-          };
+          if (!HAS_GAS) { reject(new Error('NO_GAS')); return; }
+          google.script.run
+            .withSuccessHandler(resolve)
+            .withFailureHandler(reject)[fnName](...args);
         });
       }
 
-      function idbGetAll(storeName) {
-        return openDB().then(db => new Promise((resolve, reject) => {
-          const tx = db.transaction(storeName, 'readonly');
-          const store = tx.objectStore(storeName);
-          const req = store.getAll();
-          req.onsuccess = () => resolve(req.result || []);
-          req.onerror = () => reject(req.error);
-        }));
+      // ============================================================
+      // --- LOCAL CACHE (IndexedDB) ---
+      //   store "meta":    { id, name, encoding, totalSentences, rev, currentIdx,
+      //                      lastReadAt, syncedAt, bookmarks, localOnly }
+      //   store "content": { id, rev, content }
+      // 진행 위치 저장 때는 작은 meta 만 쓰고, 큰 본문은 처음 한 번만 씁니다.
+      // 모든 캐시 함수는 실패해도 앱 동작을 막지 않습니다.
+      // ============================================================
+      const IDB_NAME = 'voice_reader_cache';
+      const IDB_VERSION = 1;
+      const STORE_META = 'meta';
+      const STORE_CONTENT = 'content';
+      let idbPromise = null;
+
+      function openDB() {
+        if (idbPromise) return idbPromise;
+        idbPromise = new Promise((resolve, reject) => {
+          if (!('indexedDB' in window)) { reject(new Error('IndexedDB not supported')); return; }
+          const req = indexedDB.open(IDB_NAME, IDB_VERSION);
+          req.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains(STORE_META)) db.createObjectStore(STORE_META, { keyPath: 'id' });
+            if (!db.objectStoreNames.contains(STORE_CONTENT)) db.createObjectStore(STORE_CONTENT, { keyPath: 'id' });
+          };
+          req.onsuccess = (e) => resolve(e.target.result);
+          req.onerror = (e) => reject(e.target.error);
+        });
+        idbPromise.catch(() => { idbPromise = null; });
+        return idbPromise;
       }
 
-      function idbPut(storeName, value) {
+      function idbRequest(storeName, mode, fn) {
         return openDB().then(db => new Promise((resolve, reject) => {
-          const tx = db.transaction(storeName, 'readwrite');
-          const store = tx.objectStore(storeName);
-          const req = store.put(value);
+          const tx = db.transaction(storeName, mode);
+          const req = fn(tx.objectStore(storeName));
           req.onsuccess = () => resolve(req.result);
           req.onerror = () => reject(req.error);
-        }));
+        })).catch(err => {
+          console.warn('IndexedDB:', err);
+          return null;
+        });
+      }
+      const idbGet = (s, key) => idbRequest(s, 'readonly', st => st.get(key));
+      const idbGetAll = (s) => idbRequest(s, 'readonly', st => st.getAll()).then(r => r || []);
+      const idbPut = (s, v) => idbRequest(s, 'readwrite', st => st.put(v));
+      const idbDelete = (s, key) => idbRequest(s, 'readwrite', st => st.delete(key));
+      const idbClear = (s) => idbRequest(s, 'readwrite', st => st.clear());
+
+      function cacheMeta(doc) {
+        return idbPut(STORE_META, {
+          id: doc.id, name: doc.name, encoding: doc.encoding, totalSentences: doc.totalSentences,
+          rev: doc.rev, currentIdx: doc.currentIdx, lastReadAt: doc.lastReadAt,
+          syncedAt: doc.syncedAt || 0, bookmarks: doc.bookmarks || [], localOnly: !!doc.localOnly
+        });
+      }
+      function cacheContent(doc, content) {
+        return idbPut(STORE_CONTENT, { id: doc.id, rev: doc.rev, content });
       }
 
-      function idbDelete(storeName, key) {
-        return openDB().then(db => new Promise((resolve, reject) => {
-          const tx = db.transaction(storeName, 'readwrite');
-          const store = tx.objectStore(storeName);
-          const req = store.delete(key);
-          req.onsuccess = () => resolve();
-          req.onerror = () => reject(req.error);
-        }));
-      }
-
-      function idbClear(storeName) {
-        return openDB().then(db => new Promise((resolve, reject) => {
-          const tx = db.transaction(storeName, 'readwrite');
-          const store = tx.objectStore(storeName);
-          const req = store.clear();
-          req.onsuccess = () => resolve();
-          req.onerror = () => reject(req.error);
-        }));
-      }
-
-      function idbGetByIndex(storeName, indexName, indexValue) {
-        return openDB().then(db => new Promise((resolve, reject) => {
-          const tx = db.transaction(storeName, 'readonly');
-          const store = tx.objectStore(storeName);
-          const idx = store.index(indexName);
-          const req = idx.getAll(indexValue);
-          req.onsuccess = () => resolve(req.result || []);
-          req.onerror = () => reject(req.error);
-        }));
-      }
-
-      // One-time migration: move any existing localStorage documents into IndexedDB.
-      async function migrateLegacyLocalStorageIfNeeded() {
-        try {
-          const raw = localStorage.getItem(LEGACY_LS_KEY);
-          if (!raw) return;
-          const legacyDocs = JSON.parse(raw);
-          if (!Array.isArray(legacyDocs) || legacyDocs.length === 0) {
-            localStorage.removeItem(LEGACY_LS_KEY);
-            return;
-          }
-          for (const doc of legacyDocs) {
-            // rawBuffer can't be migrated (wasn't persisted before either) — fine, encoding toggle
-            // will just ask for re-upload for these older entries, same as current behavior.
-            await idbPut(STORE_DOCS, doc);
-          }
-          localStorage.removeItem(LEGACY_LS_KEY);
-          console.info(`IndexedDB로 ${legacyDocs.length}개 문서를 이전했습니다.`);
-        } catch (e) {
-          console.warn('localStorage → IndexedDB 마이그레이션 실패:', e);
-        }
-      }
- 
       // --- STATE MANAGEMENT ---
       let state = {
-        documents: [], // Array of saved documents metadata & text
+        documents: [],          // 서재 (마지막으로 읽은 순)
         activeDocId: null,
-        currentRawBuffer: null, // Raw ArrayBuffer of current file for encoding conversion
+        currentRawBuffer: null, // 방금 올린 파일의 원본 바이트 (인코딩 변경용)
+        currentRawBufferDocId: null,
         currentEncoding: 'UTF-8',
         sentences: [],
         currentSentenceIdx: 0,
         isPlaying: false,
         isPaused: false,
         voices: [],
-        selectedVoiceName: localStorage.getItem('tts_voice_name') || '',
-        genderFilter: 'all', // 'all', 'female', 'male'
-        rate: parseFloat(localStorage.getItem('tts_rate')) || 1.0,
-        pitch: parseFloat(localStorage.getItem('tts_pitch')) || 1.0,
-        fontSize: parseInt(localStorage.getItem('tts_font_size')) || 16,
-        playerPos: localStorage.getItem('tts_player_pos') || 'bottom', // 'bottom' or 'top'
-        wakeLockEnabled: localStorage.getItem('tts_wake_lock') !== 'false',
+        selectedVoiceName: lsGet('tts_voice_name') || '',
+        genderFilter: 'all',
+        rate: parseFloat(lsGet('tts_rate')) || 1.0,
+        pitch: parseFloat(lsGet('tts_pitch')) || 1.0,
+        fontSize: parseInt(lsGet('tts_font_size')) || 16,
+        playerPos: lsGet('tts_player_pos') || 'bottom',
+        wakeLockEnabled: lsGet('tts_wake_lock') !== 'false',
+        autoSaver: lsGet('tts_auto_saver') !== 'false',
         autoScroll: true,
-        bookmarks: [] // bookmarks for the currently open document
+        bookmarks: [] // 현재 문서의 책갈피 [{ sentenceIdx, createdAt }]
       };
- 
+
+      const getDoc = (id) => state.documents.find(d => d.id === id);
+      const getActiveDoc = () => (state.activeDocId ? getDoc(state.activeDocId) : null);
+      const sortDocs = () => state.documents.sort((a, b) => (b.lastReadAt || 0) - (a.lastReadAt || 0));
+
       // --- WAKE LOCK ENGINE ---
       let wakeLockSentinel = null;
-      let wakeLockUnavailable = false; // set once if blocked by permissions policy, to avoid repeated console noise
- 
+      let wakeLockUnavailable = false;
+
       async function requestWakeLock() {
         if (wakeLockUnavailable) return;
         if ('wakeLock' in navigator && state.wakeLockEnabled) {
           try {
-            if (!wakeLockSentinel) {
-              wakeLockSentinel = await navigator.wakeLock.request('screen');
-            }
+            if (!wakeLockSentinel) wakeLockSentinel = await navigator.wakeLock.request('screen');
           } catch (err) {
             if (err && err.name === 'NotAllowedError') {
-              // This environment's permissions policy disallows Screen Wake Lock
-              // (e.g. when embedded in an iframe without the "screen-wake-lock" permission).
-              // This is expected in some hosting contexts, not a bug — stop retrying and log once quietly.
               wakeLockUnavailable = true;
               console.info('화면 꺼짐 방지 기능은 현재 환경에서 지원되지 않습니다 (권한 정책에 의해 차단됨).');
             } else {
@@ -719,34 +652,39 @@
           }
         }
       }
- 
+
       function releaseWakeLock() {
         if (wakeLockSentinel !== null) {
           wakeLockSentinel.release().catch(() => {});
           wakeLockSentinel = null;
         }
       }
- 
+
       document.addEventListener('visibilitychange', async () => {
-        if (document.visibilityState === 'visible' && state.isPlaying) {
-          await requestWakeLock();
+        if (document.visibilityState === 'visible') {
+          if (uiStale && !saverActive) updatePlaybackUI();
+          if (state.isPlaying) {
+            await requestWakeLock();
+          } else {
+            // 다른 기기에서 더 읽었을 수 있으니 서버 기록을 다시 확인
+            refreshFromServer();
+          }
         }
         if (document.visibilityState === 'hidden') {
-          // App backgrounded / screen locked — make sure the throttled
-          // progress write isn't lost before the tab is potentially killed.
           flushCurrentProgress();
+          flushSettings();
         }
       });
 
-      window.addEventListener('beforeunload', () => {
-        flushCurrentProgress();
-      });
- 
+      window.addEventListener('pagehide', () => { flushCurrentProgress(); flushSettings(); });
+
       // --- SPEECH SYNTHESIS ENGINE ---
       const synth = window.speechSynthesis;
       let currentUtterance = null;
- 
+
       // --- DOM ELEMENTS ---
+      const viewLoading = document.getElementById('view-loading');
+      const loadingText = document.getElementById('loading-text');
       const viewUpload = document.getElementById('view-upload');
       const viewReader = document.getElementById('view-reader');
       const dropZone = document.getElementById('drop-zone');
@@ -754,14 +692,14 @@
       const textWrapper = document.getElementById('text-content-wrapper');
       const readerScrollContainer = document.getElementById('reader-scroll-container');
       const playerBar = document.getElementById('player-bar');
- 
-      // Modals
+      const syncDot = document.getElementById('sync-dot');
+      const userEmailEl = document.getElementById('user-email');
+
       const modalVoice = document.getElementById('modal-voice');
       const modalLibrary = document.getElementById('modal-library');
       const modalBookmarks = document.getElementById('modal-bookmarks');
       const modalSearch = document.getElementById('modal-search');
- 
-      // Controls
+
       const btnPlayPause = document.getElementById('btn-play-pause');
       const iconPlay = document.getElementById('icon-play');
       const iconPause = document.getElementById('icon-pause');
@@ -773,13 +711,16 @@
       const btnSpeed = document.getElementById('btn-speed');
       const btnQuickVoice = document.getElementById('btn-quick-voice');
       const quickVoiceLabel = document.getElementById('quick-voice-label');
- 
-      // Font & Layout Settings Elements
+
       const inputFontSize = document.getElementById('input-font-size');
       const valFontSize = document.getElementById('val-font-size');
       const toggleWakeLock = document.getElementById('toggle-wake-lock');
- 
-      // Text Metadata UI
+      const toggleAutoSaver = document.getElementById('toggle-auto-saver');
+      const btnSaver = document.getElementById('btn-saver');
+      const saverOverlay = document.getElementById('saver-overlay');
+      const saverInfo = document.getElementById('saver-info');
+      const saverProgress = document.getElementById('saver-progress');
+
       const docTitle = document.getElementById('doc-title');
       const docProgressText = document.getElementById('doc-progress-text');
       const docSentenceCount = document.getElementById('doc-sentence-count');
@@ -787,87 +728,298 @@
       const badgeBookmarkCount = document.getElementById('badge-bookmark-count');
       const btnScrollActive = document.getElementById('btn-scroll-active');
       const bookmarkToast = document.getElementById('bookmark-toast');
- 
-      // Voice Settings Modal Elements
+
       const selectVoice = document.getElementById('select-voice');
       const inputRate = document.getElementById('input-rate');
       const inputPitch = document.getElementById('input-pitch');
       const valRate = document.getElementById('val-rate');
       const valPitch = document.getElementById('val-pitch');
       const btnTestVoice = document.getElementById('btn-test-voice');
- 
-      // Library Elements
+
       const libraryListContainer = document.getElementById('library-list-container');
       const libraryCount = document.getElementById('library-count');
 
-      // Bookmark Elements
       const bookmarkListContainer = document.getElementById('bookmark-list-container');
       const bookmarkCountEl = document.getElementById('bookmark-count');
 
-      // Go-to-sentence Elements
       const btnGotoToggle = document.getElementById('btn-goto-toggle');
       const gotoForm = document.getElementById('goto-form');
       const inputGotoSentence = document.getElementById('input-goto-sentence');
       const btnGotoGo = document.getElementById('btn-goto-go');
 
-      // Search (Find-in-text) Elements
       const btnSearch = document.getElementById('btn-search');
       const inputSearchText = document.getElementById('input-search-text');
       const btnSearchClear = document.getElementById('btn-search-clear');
       const searchResultSummary = document.getElementById('search-result-summary');
       const searchResultContainer = document.getElementById('search-result-container');
- 
-      // --- INITIALIZATION ---
-      initApp();
 
-      async function initApp() {
-        await migrateLegacyLocalStorageIfNeeded();
-        await loadHistoryFromStorage();
-        initSpeechVoices();
-        initTheme();
-        initLayoutAndSettings();
-        initSentenceDelegatedEvents();
+      // --- VIEW SWITCHING ---
+      function showView(name, message) {
+        viewLoading.classList.toggle('hidden', name !== 'loading');
+        viewUpload.classList.toggle('hidden', name !== 'upload');
+        viewReader.classList.toggle('hidden', name !== 'reader');
+        playerBar.classList.toggle('hidden', name !== 'reader');
+        if (name === 'loading' && message) loadingText.textContent = message;
       }
- 
+
+      // --- SYNC STATUS INDICATOR ---
+      function setSyncStatus(status) {
+        const map = {
+          ok: ['bg-emerald-500', '동기화됨 — 다른 기기에서도 이어 읽을 수 있어요'],
+          saving: ['bg-amber-400', '저장 중…'],
+          offline: ['bg-rose-500', '서버 연결 안 됨 — 이 기기에만 저장 중'],
+          local: ['bg-slate-400', '이 기기 전용 모드 (Apps Script 밖에서 실행됨)']
+        };
+        const [color, label] = map[status] || map.local;
+        syncDot.className = `w-2 h-2 rounded-full shrink-0 ${color}`;
+        syncDot.title = label;
+      }
+
+      // --- INITIALIZATION (실제 호출은 스크립트 맨 아래에서) ---
+      async function initApp() {
+        showView('loading', '읽던 책을 불러오는 중…');
+
+        let loadedFromServer = false;
+        if (HAS_GAS) {
+          try {
+            const lib = await gas('getLibrary');
+            userEmailEl.textContent = lib.email || 'Google 계정';
+            userEmailEl.title = lib.email || '';
+            state.documents = lib.docs.map(fromServerDoc);
+            // 서버에 저장된 읽기 설정(속도 등)을 먼저 적용 → 책을 열 때 이전 속도 그대로
+            applyServerSettings(lib.settings);
+            serverOnline = true;
+            loadedFromServer = true;
+            setSyncStatus('ok');
+            // 서버 목록 기준으로 캐시 메타 갱신
+            state.documents.forEach(cacheMeta);
+          } catch (e) {
+            console.error('서버 연결 실패:', e);
+            serverOnline = false;
+            setSyncStatus('offline');
+            userEmailEl.textContent = '오프라인';
+            showToast('서버에 연결하지 못해 이 기기에 저장된 기록으로 엽니다.', 'error');
+          }
+        } else {
+          setSyncStatus('local');
+          userEmailEl.textContent = '이 기기 전용';
+        }
+
+        if (!loadedFromServer) {
+          state.documents = await idbGetAll(STORE_META);
+        }
+        sortDocs();
+        updateBadgeCount();
+
+        // 첫 화면: 마지막으로 읽던 책의 읽던 위치
+        const last = state.documents[0];
+        if (last) {
+          const ok = await openDocument(last.id);
+          if (ok) return;
+        }
+        showView('upload');
+      }
+
+      function fromServerDoc(m) {
+        return {
+          id: m.id,
+          name: m.name,
+          encoding: m.encoding || 'UTF-8',
+          totalSentences: m.totalSentences || 0,
+          rev: m.rev || 1,
+          currentIdx: m.currentIdx || 0,
+          lastReadAt: m.lastReadAt || 0,
+          syncedAt: m.lastReadAt || 0,
+          bookmarks: (m.bookmarks || []).map(([i, t]) => ({ sentenceIdx: i, createdAt: t }))
+        };
+      }
+
+      // 서버 서재를 다시 받아와 이 기기 상태와 합칩니다.
+      // (앱으로 돌아왔을 때 다른 기기에서 읽은 위치/책갈피/삭제를 반영)
+      let refreshing = false;
+      async function refreshFromServer() {
+        if (!HAS_GAS || refreshing) return;
+        if (state.isPlaying || progressDirty || saveInFlight) return;
+        refreshing = true;
+        try {
+          let lib;
+          try {
+            lib = await gas('getLibrary');
+            serverOnline = true;
+            setSyncStatus('ok');
+            if (lib.email) userEmailEl.textContent = lib.email;
+            // 다른 기기에서 바꾼 속도 등을 반영 (이 기기에서 방금 바꾼 게 저장 대기 중이면 건너뜀)
+            if (!settingsSaveTimer && !settingsSaveInFlight) applyServerSettings(lib.settings);
+          } catch (e) {
+            serverOnline = false;
+            setSyncStatus('offline');
+            return;
+          }
+          if (state.isPlaying || progressDirty) return; // 그 사이에 재생을 시작했으면 건드리지 않음
+
+          const activeId = state.activeDocId;
+          const before = activeId ? getDoc(activeId) : null;
+          const beforeIdx = state.currentSentenceIdx;
+          const beforeSynced = before ? (before.syncedAt || 0) : 0;
+          const beforeRev = before ? before.rev : null;
+
+          const localById = new Map(state.documents.map(d => [d.id, d]));
+          const merged = lib.docs.map(sd => {
+            const incoming = fromServerDoc(sd);
+            const local = localById.get(sd.id);
+            if (local && local.content && local.rev === incoming.rev) incoming.content = local.content;
+            return incoming;
+          });
+          state.documents.filter(d => d.localOnly).forEach(d => merged.push(d));
+          state.documents = merged;
+          sortDocs();
+          updateBadgeCount();
+          merged.forEach(cacheMeta);
+
+          if (!activeId) return;
+          const after = getDoc(activeId);
+          if (!after) {
+            closeReader();
+            showToast('다른 기기에서 삭제된 책이에요.', 'info');
+            return;
+          }
+          if (after.rev !== beforeRev) {
+            await openDocument(activeId);
+            showToast('다른 기기에서 내용(인코딩)이 바뀌어 다시 불러왔어요.', 'info');
+            return;
+          }
+          state.bookmarks = after.bookmarks;
+          updateBookmarkBadge();
+          refreshBookmarkMarks();
+
+          if ((after.syncedAt || 0) > beforeSynced && after.currentIdx !== beforeIdx) {
+            state.currentSentenceIdx = clampIdx(after.currentIdx);
+            updatePlaybackUI();
+            showToast(`다른 기기에서 읽던 ${state.currentSentenceIdx + 1}번째 문장으로 이동했어요.`, 'success');
+          }
+        } finally {
+          refreshing = false;
+        }
+      }
+
+      function clampIdx(i) {
+        const max = Math.max(0, state.sentences.length - 1);
+        i = parseInt(i, 10) || 0;
+        return Math.min(Math.max(0, i), max);
+      }
+
+      // ============================================================
+      // --- SETTINGS SYNC (재생 속도 등 기억하기) ---
+      // 바꿀 때마다 이 기기에 바로 저장하고, 1.5초 뒤 서버에도 저장합니다.
+      // 앱을 열면 서버 값을 우선 적용하므로 어떤 기기에서든 같은 속도로 시작합니다.
+      // ============================================================
+      let settingsSaveTimer = null;
+      let settingsSaveInFlight = false;
+
+      function formatRate(r) {
+        return `${Number((Number(r) || 1).toFixed(2))}x`;
+      }
+
+      function collectSettings() {
+        return {
+          rate: state.rate,
+          pitch: state.pitch,
+          fontSize: state.fontSize,
+          playerPos: state.playerPos,
+          theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+          wakeLock: state.wakeLockEnabled,
+          autoSaver: state.autoSaver,
+          voiceName: state.selectedVoiceName || ''
+        };
+      }
+
+      function saveSettingsSoon() {
+        if (!HAS_GAS) return;
+        if (settingsSaveTimer) clearTimeout(settingsSaveTimer);
+        settingsSaveTimer = setTimeout(flushSettings, 1500);
+      }
+
+      async function flushSettings() {
+        if (!settingsSaveTimer) return;
+        clearTimeout(settingsSaveTimer);
+        settingsSaveTimer = null;
+        if (!HAS_GAS) return;
+        settingsSaveInFlight = true;
+        try {
+          await gas('saveSettings', collectSettings());
+        } catch (e) {
+          console.warn('설정 저장 실패:', e);
+        } finally {
+          settingsSaveInFlight = false;
+        }
+      }
+
+      function applyServerSettings(s) {
+        if (!s || typeof s !== 'object') return;
+        const num = (v, min, max) => (typeof v === 'number' && isFinite(v)) ? Math.min(max, Math.max(min, v)) : null;
+
+        const rate = num(s.rate, 0.5, 2.0);
+        if (rate !== null) { state.rate = rate; lsSet('tts_rate', rate); }
+        const pitch = num(s.pitch, 0.5, 1.5);
+        if (pitch !== null) { state.pitch = pitch; lsSet('tts_pitch', pitch); }
+        const fontSize = num(s.fontSize, 12, 28);
+        if (fontSize !== null) { state.fontSize = Math.round(fontSize); lsSet('tts_font_size', state.fontSize); }
+        if (s.playerPos === 'top' || s.playerPos === 'bottom') { state.playerPos = s.playerPos; lsSet('tts_player_pos', s.playerPos); }
+        if (typeof s.wakeLock === 'boolean') { state.wakeLockEnabled = s.wakeLock; lsSet('tts_wake_lock', s.wakeLock); }
+        if (typeof s.autoSaver === 'boolean') { state.autoSaver = s.autoSaver; lsSet('tts_auto_saver', s.autoSaver); }
+        if (s.theme === 'dark' || s.theme === 'light') {
+          document.documentElement.classList.toggle('dark', s.theme === 'dark');
+          lsSet('theme', s.theme);
+        }
+        // 음성은 기기마다 목록이 다르므로, 이 기기에 같은 음성이 있을 때만 적용
+        if (typeof s.voiceName === 'string' && s.voiceName) {
+          const voices = synth ? synth.getVoices() : [];
+          if (voices.length === 0 || voices.some(v => v.name === s.voiceName)) {
+            state.selectedVoiceName = s.voiceName;
+            lsSet('tts_voice_name', s.voiceName);
+          }
+        }
+
+        initLayoutAndSettings();
+        populateVoiceSelect();
+        updateQuickVoiceLabel();
+      }
+
       function initLayoutAndSettings() {
         if (inputFontSize) inputFontSize.value = state.fontSize;
         if (valFontSize) valFontSize.textContent = `${state.fontSize}px`;
         if (toggleWakeLock) toggleWakeLock.checked = state.wakeLockEnabled;
+        if (toggleAutoSaver) toggleAutoSaver.checked = state.autoSaver;
         if (inputRate) inputRate.value = state.rate;
-        if (valRate) valRate.textContent = `${state.rate.toFixed(1)}x`;
+        if (valRate) valRate.textContent = formatRate(state.rate);
+        if (btnSpeed) btnSpeed.textContent = formatRate(state.rate);
         if (inputPitch) inputPitch.value = state.pitch;
         if (valPitch) valPitch.textContent = state.pitch.toFixed(1);
- 
         updateFontSize();
         updatePlayerPosition();
       }
- 
+
       function updateFontSize() {
-        if (textWrapper) {
-          // .sentence-item now has `font-size: inherit` in CSS, so setting it
-          // once here on the wrapper is enough — no need to loop over every
-          // sentence span individually (that loop was the cause of the font
-          // size slider stuttering on long documents).
-          textWrapper.style.fontSize = `${state.fontSize}px`;
-        }
-        if (valFontSize) {
-          valFontSize.textContent = `${state.fontSize}px`;
-        }
+        if (textWrapper) textWrapper.style.fontSize = `${state.fontSize}px`;
+        if (valFontSize) valFontSize.textContent = `${state.fontSize}px`;
       }
- 
+
       function updatePlayerPosition() {
         if (!playerBar || !readerScrollContainer || !btnScrollActive) return;
- 
+        const barHidden = playerBar.classList.contains('hidden');
+
         if (state.playerPos === 'top') {
-          playerBar.className = 'fixed top-[49px] left-0 right-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-xl p-3 sm:px-6 transition-all duration-300';
+          playerBar.className = 'fixed top-[61px] left-0 right-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl p-3 sm:px-6 transition-all duration-300';
           readerScrollContainer.className = 'flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 pt-36 pb-12 selection:bg-brand-200';
-          btnScrollActive.className = 'hidden absolute bottom-6 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 backdrop-blur shadow-lg flex items-center justify-center active:scale-95 transition-all z-10';
+          btnScrollActive.className = 'hidden absolute bottom-6 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 shadow-lg flex items-center justify-center active:scale-95 transition-all z-10';
         } else {
-          playerBar.className = 'fixed bottom-0 left-0 right-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 shadow-2xl p-3 sm:px-6 transition-all duration-300';
+          playerBar.className = 'fixed bottom-0 left-0 right-0 z-30 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-2xl p-3 sm:px-6 transition-all duration-300';
           readerScrollContainer.className = 'flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 pb-36 selection:bg-brand-200';
-          btnScrollActive.className = 'hidden absolute bottom-28 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 backdrop-blur shadow-lg flex items-center justify-center active:scale-95 transition-all z-10';
+          btnScrollActive.className = 'hidden absolute bottom-28 right-4 w-10 h-10 rounded-full bg-slate-900/80 dark:bg-slate-100/90 text-white dark:text-slate-900 shadow-lg flex items-center justify-center active:scale-95 transition-all z-10';
         }
- 
+        // className 교체로 'hidden' 이 사라져 업로드 화면에 플레이어가 보이던 문제 방지
+        if (barHidden) playerBar.classList.add('hidden');
+
         document.querySelectorAll('.btn-pos-toggle').forEach(btn => {
           if (btn.getAttribute('data-pos') === state.playerPos) {
             btn.className = 'btn-pos-toggle px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300';
@@ -876,12 +1028,18 @@
           }
         });
       }
- 
+
       if (synth && synth.onvoiceschanged !== undefined) {
         synth.onvoiceschanged = initSpeechVoices;
       }
- 
+
       // --- TOAST & CONFIRM MODAL HELPERS ---
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, (ch) => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[ch]));
+      }
+
       function showToast(message, type = 'info') {
         let toastContainer = document.getElementById('toast-container');
         if (!toastContainer) {
@@ -890,83 +1048,66 @@
           toastContainer.className = 'fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 w-11/12 max-w-sm pointer-events-none';
           document.body.appendChild(toastContainer);
         }
- 
         const toast = document.createElement('div');
         const bgClass = type === 'error' ? 'bg-rose-600 text-white' : (type === 'success' ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-white');
         toast.className = `${bgClass} text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center justify-between gap-2 transition-all transform -translate-y-2 opacity-0 pointer-events-auto`;
         toast.innerHTML = `
-          <span>${message}</span>
-          <button class="text-white/80 hover:text-white p-1" onclick="this.parentElement.remove()"><i class="ph-bold ph-x"></i></button>
+          <span>${escapeHtml(message)}</span>
+          <button class="text-white/80 hover:text-white p-1"><i class="ph-bold ph-x"></i></button>
         `;
- 
+        toast.querySelector('button').addEventListener('click', () => toast.remove());
         toastContainer.appendChild(toast);
         renderAllIcons(toast);
- 
-        requestAnimationFrame(() => {
-          toast.classList.remove('-translate-y-2', 'opacity-0');
-        });
- 
+        requestAnimationFrame(() => toast.classList.remove('-translate-y-2', 'opacity-0'));
         setTimeout(() => {
           toast.classList.add('opacity-0', '-translate-y-2');
           setTimeout(() => toast.remove(), 300);
         }, 3000);
       }
- 
+
       function showConfirm(title, message, onConfirm) {
         let modal = document.getElementById('modal-confirm');
         if (!modal) {
           modal = document.createElement('div');
           modal.id = 'modal-confirm';
-          modal.className = 'fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-200';
+          modal.className = 'fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 transition-opacity duration-200';
           document.body.appendChild(modal);
         }
- 
         modal.innerHTML = `
           <div class="bg-white dark:bg-slate-900 w-full max-w-xs rounded-3xl p-5 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 text-center">
             <div class="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
               <i class="ph-bold ph-warning-circle text-2xl"></i>
             </div>
-            <h4 class="font-bold text-sm text-slate-900 dark:text-white">${title}</h4>
-            <p class="text-xs text-slate-500 dark:text-slate-400">${message}</p>
+            <h4 class="font-bold text-sm text-slate-900 dark:text-white">${escapeHtml(title)}</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">${escapeHtml(message)}</p>
             <div class="flex items-center gap-2 pt-2">
               <button id="btn-confirm-cancel" class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs">취소</button>
               <button id="btn-confirm-ok" class="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs">확인</button>
             </div>
           </div>
         `;
- 
         modal.classList.remove('hidden');
         renderAllIcons(modal);
- 
-        modal.querySelector('#btn-confirm-cancel').onclick = () => {
-          modal.classList.add('hidden');
-        };
- 
+        modal.querySelector('#btn-confirm-cancel').onclick = () => modal.classList.add('hidden');
         modal.querySelector('#btn-confirm-ok').onclick = () => {
           modal.classList.add('hidden');
           onConfirm();
         };
       }
- 
+
       // --- VOICE ENGINE HELPERS ---
       function initSpeechVoices() {
         if (!synth) return;
         state.voices = synth.getVoices();
-        
         if (!state.selectedVoiceName && state.voices.length > 0) {
           const koVoice = state.voices.find(v => v.lang.includes('ko') || v.lang.includes('KO'));
-          if (koVoice) {
-            state.selectedVoiceName = koVoice.name;
-          } else {
-            state.selectedVoiceName = state.voices[0].name;
-          }
-          localStorage.setItem('tts_voice_name', state.selectedVoiceName);
+          state.selectedVoiceName = koVoice ? koVoice.name : state.voices[0].name;
+          lsSet('tts_voice_name', state.selectedVoiceName);
         }
-        
         populateVoiceSelect();
         updateQuickVoiceLabel();
       }
- 
+
       function populateVoiceSelect() {
         if (!selectVoice) return;
         selectVoice.innerHTML = '';
@@ -977,32 +1118,26 @@
           selectVoice.appendChild(opt);
           return;
         }
- 
         const filteredVoices = state.voices.filter(voice => {
+          const nameLower = voice.name.toLowerCase();
           if (state.genderFilter === 'female') {
-            const nameLower = voice.name.toLowerCase();
-            return nameLower.includes('female') || nameLower.includes('여성') || nameLower.includes('woman') || nameLower.includes('yuna') || nameLower.includes('siri') || nameLower.includes('kyoko') || nameLower.includes('sin-ji') || nameLower.includes('sun-hi') || nameLower.includes('heami');
+            return ['female', '여성', 'woman', 'yuna', 'siri', 'kyoko', 'sin-ji', 'sun-hi', 'heami'].some(k => nameLower.includes(k));
           } else if (state.genderFilter === 'male') {
-            const nameLower = voice.name.toLowerCase();
-            return nameLower.includes('male') || nameLower.includes('남성') || nameLower.includes('man') || nameLower.includes('minsu') || nameLower.includes('seung-hi');
+            return ['male', '남성', 'man', 'minsu', 'seung-hi'].some(k => nameLower.includes(k));
           }
           return true;
         });
- 
         const listToDisplay = filteredVoices.length > 0 ? filteredVoices : state.voices;
- 
         listToDisplay.forEach(voice => {
           const option = document.createElement('option');
           option.value = voice.name;
           const isKorean = voice.lang.includes('ko') || voice.lang.includes('KO');
           option.textContent = `${isKorean ? '🇰🇷 ' : ''}${voice.name} (${voice.lang})`;
-          if (voice.name === state.selectedVoiceName) {
-            option.selected = true;
-          }
+          if (voice.name === state.selectedVoiceName) option.selected = true;
           selectVoice.appendChild(option);
         });
       }
- 
+
       function updateQuickVoiceLabel() {
         if (!quickVoiceLabel) return;
         if (state.selectedVoiceName) {
@@ -1012,44 +1147,7 @@
           quickVoiceLabel.textContent = '음성 선택';
         }
       }
- 
-      // --- INDEXEDDB-BACKED HISTORY HELPERS ---
-      async function loadHistoryFromStorage() {
-        try {
-          const docs = await idbGetAll(STORE_DOCS);
-          // Newest-read-first, matching previous unshift() behavior
-          docs.sort((a, b) => (b.lastReadAt || 0) - (a.lastReadAt || 0));
-          state.documents = docs;
-        } catch (e) {
-          console.error('Failed to load document history from IndexedDB:', e);
-          state.documents = [];
-        }
-        updateBadgeCount();
-      }
- 
-      async function saveDocumentToStorage(doc) {
-        try {
-          await idbPut(STORE_DOCS, doc);
-        } catch (e) {
-          console.error('Failed to save document to IndexedDB:', e);
-          showToast('문서를 저장하지 못했습니다.', 'error');
-        }
-        updateBadgeCount();
-      }
 
-      async function deleteDocumentFromStorage(docId) {
-        try {
-          await idbDelete(STORE_DOCS, docId);
-          // Also remove any bookmarks tied to this document
-          const bms = await idbGetByIndex(STORE_BOOKMARKS, 'docId', docId);
-          for (const bm of bms) {
-            await idbDelete(STORE_BOOKMARKS, bm.id);
-          }
-        } catch (e) {
-          console.error('Failed to delete document from IndexedDB:', e);
-        }
-      }
- 
       function updateBadgeCount() {
         if (state.documents.length > 0) {
           badgeFileCount.textContent = state.documents.length;
@@ -1067,52 +1165,41 @@
           badgeBookmarkCount.classList.add('hidden');
         }
       }
- 
+
       // --- FILE UPLOAD & PARSING WITH AUTO ENCODING DETECTION ---
       inputFile.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) handleFile(file);
+        e.target.value = ''; // 같은 파일을 다시 골라도 change 이벤트가 나도록
       });
- 
+
       dropZone.addEventListener('dragover', (e) => {
         e.preventDefault();
         dropZone.classList.add('border-brand-500', 'bg-brand-50/50');
       });
- 
       dropZone.addEventListener('dragleave', () => {
         dropZone.classList.remove('border-brand-500', 'bg-brand-50/50');
       });
- 
       dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
         dropZone.classList.remove('border-brand-500', 'bg-brand-50/50');
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-          handleFile(e.dataTransfer.files[0]);
-        }
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
       });
- 
-      // Automatic Text Encoding Detector (UTF-8, EUC-KR/CP949, UTF-16)
+
       function detectAndDecodeText(arrayBuffer) {
         const bytes = new Uint8Array(arrayBuffer);
-        
-        // 1. Check UTF-8 BOM
         if (bytes.length >= 3 && bytes[0] === 0xEF && bytes[1] === 0xBB && bytes[2] === 0xBF) {
           return { text: new TextDecoder('utf-8').decode(bytes.subarray(3)), encoding: 'UTF-8' };
         }
-        // 2. Check UTF-16 LE BOM
         if (bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE) {
           return { text: new TextDecoder('utf-16le').decode(bytes.subarray(2)), encoding: 'UTF-16LE' };
         }
-        // 3. Check UTF-16 BE BOM
         if (bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF) {
           return { text: new TextDecoder('utf-16be').decode(bytes.subarray(2)), encoding: 'UTF-16BE' };
         }
- 
-        // 4. Validate UTF-8 byte stream compliance
         let isUtf8 = true;
         let hasNonAscii = false;
         let i = 0;
- 
         while (i < bytes.length) {
           const byte = bytes[i];
           if (byte > 0x7F) {
@@ -1121,59 +1208,46 @@
             if ((byte & 0xE0) === 0xC0) extraBytes = 1;
             else if ((byte & 0xF0) === 0xE0) extraBytes = 2;
             else if ((byte & 0xF8) === 0xF0) extraBytes = 3;
-            else {
-              isUtf8 = false;
-              break;
-            }
- 
+            else { isUtf8 = false; break; }
             for (let j = 1; j <= extraBytes; j++) {
-              if (i + j >= bytes.length || (bytes[i + j] & 0xC0) !== 0x80) {
-                isUtf8 = false;
-                break;
-              }
+              if (i + j >= bytes.length || (bytes[i + j] & 0xC0) !== 0x80) { isUtf8 = false; break; }
             }
             if (!isUtf8) break;
             i += extraBytes;
           }
           i++;
         }
- 
         const detectedEncoding = (hasNonAscii && !isUtf8) ? 'EUC-KR' : 'UTF-8';
-        
         try {
-          const decoder = new TextDecoder(detectedEncoding.toLowerCase(), { fatal: false });
-          return { text: decoder.decode(bytes), encoding: detectedEncoding };
+          return { text: new TextDecoder(detectedEncoding.toLowerCase(), { fatal: false }).decode(bytes), encoding: detectedEncoding };
         } catch (e) {
-          const decoder = new TextDecoder('utf-8', { fatal: false });
-          return { text: decoder.decode(bytes), encoding: 'UTF-8' };
+          return { text: new TextDecoder('utf-8', { fatal: false }).decode(bytes), encoding: 'UTF-8' };
         }
       }
- 
+
       function handleFile(file) {
         if (!file.name.toLowerCase().endsWith('.txt') && file.type !== 'text/plain') {
           showToast('TXT 텍스트 파일만 업로드 가능합니다.', 'error');
           return;
         }
- 
         const reader = new FileReader();
-        reader.onload = function(evt) {
+        reader.onload = function (evt) {
           const arrayBuffer = evt.target.result;
           const result = detectAndDecodeText(arrayBuffer);
           createOrLoadDocument(file.name, result.text, arrayBuffer, result.encoding);
         };
         reader.readAsArrayBuffer(file);
       }
- 
+
+      // 문장 나누기 규칙은 모든 기기에서 똑같아야 같은 번호가 같은 문장을 가리킵니다.
       function parseTextIntoSentences(text) {
         if (!text) return [];
         const cleaned = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
         const lines = cleaned.split('\n');
         const sentences = [];
-        
         lines.forEach(line => {
           const trimmedLine = line.trim();
           if (!trimmedLine) return;
-          
           const matched = trimmedLine.match(/[^.!?]+[.!?]+|[^.!?]+/g);
           if (matched) {
             matched.forEach(s => {
@@ -1184,138 +1258,225 @@
             sentences.push(trimmedLine);
           }
         });
- 
         return sentences.length > 0 ? sentences : [text.trim()];
       }
- 
-      async function createOrLoadDocument(fileName, textContent, rawBuffer = null, encoding = 'UTF-8') {
-        const existing = state.documents.find(d => d.name === fileName && d.content === textContent);
-        
-        let doc;
-        if (existing) {
-          doc = existing;
-          doc.lastReadAt = Date.now();
-          doc.encoding = encoding;
-        } else {
-          const parsedSentences = parseTextIntoSentences(textContent);
-          doc = {
-            id: 'doc_' + Date.now(),
-            name: fileName,
-            content: textContent,
-            encoding: encoding,
-            sentences: parsedSentences,
-            currentIdx: 0,
-            totalSentences: parsedSentences.length,
-            lastReadAt: Date.now()
-          };
-          state.documents.unshift(doc);
+
+      // 파일 이름 + 내용으로 만든 고유 ID → 다른 기기에서 같은 파일을 올려도 같은 책으로 인식
+      async function makeDocId(name, content) {
+        const data = new TextEncoder().encode(name + '\u0000' + content);
+        if (window.crypto && crypto.subtle) {
+          try {
+            const buf = await crypto.subtle.digest('SHA-256', data);
+            return 'doc_' + Array.from(new Uint8Array(buf)).slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
+          } catch (e) { /* fallback below */ }
         }
- 
-        state.currentRawBuffer = rawBuffer;
-        await saveDocumentToStorage(doc);
-        openDocument(doc.id);
+        let h1 = 0x811c9dc5, h2 = 0x9747b28c;
+        for (let i = 0; i < data.length; i++) {
+          h1 = Math.imul(h1 ^ data[i], 0x01000193) >>> 0;
+          h2 = Math.imul(h2 ^ data[i], 0x5bd1e995) >>> 0;
+        }
+        return 'doc_' + h1.toString(16).padStart(8, '0') + h2.toString(16).padStart(8, '0');
       }
- 
+
+      async function createOrLoadDocument(fileName, textContent, rawBuffer = null, encoding = 'UTF-8') {
+        stopSpeech();
+        flushCurrentProgress();
+        showView('loading', '책을 준비하는 중…');
+
+        const id = await makeDocId(fileName, textContent);
+        state.currentRawBuffer = rawBuffer;
+        state.currentRawBufferDocId = id;
+
+        let doc = getDoc(id);
+        if (!doc) {
+          const total = parseTextIntoSentences(textContent).length;
+          doc = {
+            id, name: fileName, encoding, totalSentences: total, rev: 1,
+            currentIdx: 0, lastReadAt: Date.now(), syncedAt: 0, bookmarks: [],
+            content: textContent, localOnly: !HAS_GAS
+          };
+          if (HAS_GAS) {
+            showView('loading', '내 드라이브에 책을 저장하는 중…');
+            try {
+              const m = await gas('uploadDocument', { id, name: fileName, encoding, totalSentences: total }, textContent);
+              doc = fromServerDoc(m);
+              doc.content = textContent;
+              serverOnline = true;
+              setSyncStatus('ok');
+            } catch (e) {
+              console.error('업로드 실패:', e);
+              doc.localOnly = true;
+              setSyncStatus('offline');
+              showToast('서버에 저장하지 못했어요. 지금은 이 기기에서만 이어 읽기가 됩니다.', 'error');
+            }
+          }
+          state.documents.unshift(doc);
+          cacheMeta(doc);
+          cacheContent(doc, textContent);
+          updateBadgeCount();
+        }
+
+        const ok = await openDocument(doc.id);
+        if (!ok) showView('upload');
+      }
+
+      // 서버에 못 올라간 책(이 기기 전용)을 연결이 되면 다시 올려봅니다.
+      async function retryUploadIfLocalOnly(doc) {
+        if (!HAS_GAS || !doc.localOnly || !doc.content) return;
+        try {
+          const m = await gas('uploadDocument', { id: doc.id, name: doc.name, encoding: doc.encoding, totalSentences: doc.totalSentences }, doc.content);
+          doc.localOnly = false;
+          doc.rev = m.rev;
+          await gas('saveProgress', doc.id, doc.currentIdx);
+          if (doc.bookmarks.length) await gas('saveBookmarks', doc.id, doc.bookmarks.map(b => [b.sentenceIdx, b.createdAt]));
+          cacheMeta(doc);
+          cacheContent(doc, doc.content);
+          serverOnline = true;
+          setSyncStatus('ok');
+          showToast('이 책을 서버에 저장했어요. 이제 다른 기기에서도 이어 읽을 수 있어요.', 'success');
+        } catch (e) {
+          console.warn('재업로드 실패:', e);
+        }
+      }
+
+      // 본문 가져오기: 메모리 → 이 기기 캐시(같은 버전일 때) → 서버
+      async function ensureContent(doc) {
+        if (typeof doc.content === 'string') return doc.content;
+        const cached = await idbGet(STORE_CONTENT, doc.id);
+        if (cached && typeof cached.content === 'string' &&
+            (cached.rev === doc.rev || !serverOnline || doc.localOnly)) {
+          doc.content = cached.content;
+          return doc.content;
+        }
+        if (!HAS_GAS) throw new Error('NO_CONTENT');
+        const r = await gas('getDocumentContent', doc.id);
+        doc.content = r.content;
+        doc.rev = r.rev;
+        cacheContent(doc, r.content);
+        return doc.content;
+      }
+
       // --- DOCUMENT READER VIEW ---
       async function openDocument(docId) {
         stopSpeech();
- 
-        const doc = state.documents.find(d => d.id === docId);
-        if (!doc) return;
- 
+        if (state.activeDocId && state.activeDocId !== docId) flushCurrentProgress();
+
+        const doc = getDoc(docId);
+        if (!doc) return false;
+
+        let content;
+        if (typeof doc.content !== 'string') showView('loading', '책을 불러오는 중…');
+        try {
+          content = await ensureContent(doc);
+        } catch (e) {
+          console.error('본문 불러오기 실패:', e);
+          showToast(`'${doc.name}' 내용을 불러오지 못했습니다.`, 'error');
+          if (state.activeDocId) showView('reader');
+          return false;
+        }
+
+        // 메모리 절약: 지금 여는 책 외에는 본문을 메모리에서 비움 (캐시에는 남아 있음)
+        state.documents.forEach(d => { if (d.id !== docId) delete d.content; });
+
         state.activeDocId = doc.id;
-        state.sentences = doc.sentences || parseTextIntoSentences(doc.content);
-        state.currentSentenceIdx = doc.currentIdx || 0;
+        state.sentences = parseTextIntoSentences(content);
+        doc.totalSentences = state.sentences.length;
+        state.currentSentenceIdx = clampIdx(doc.currentIdx || 0);
         state.currentEncoding = doc.encoding || 'UTF-8';
- 
+        state.bookmarks = doc.bookmarks || (doc.bookmarks = []);
+
         docTitle.textContent = doc.name;
         document.getElementById('label-encoding').textContent = state.currentEncoding;
-
-        // Reset transient UI (go-to form, search box) when switching documents
         if (gotoForm) gotoForm.classList.add('hidden');
         if (inputSearchText) inputSearchText.value = '';
         activeSentenceEl = null;
-        
-        // Render Sentences.
-        // All sentence spans are built in an off-DOM DocumentFragment and
-        // attached to the page with a single appendChild — previously each
-        // span was appended one at a time in the loop, forcing a reflow per
-        // sentence. Click/long-press handling no longer attaches listeners
-        // per span (see initSentenceDelegatedEvents(), set up once at
-        // startup) and font-size is inherited from the wrapper via CSS, so
-        // this loop only builds plain elements — no per-sentence listener
-        // or style-setting cost.
+
         textWrapper.innerHTML = '';
         const sentenceFragment = document.createDocumentFragment();
         state.sentences.forEach((sentenceText, idx) => {
           const span = document.createElement('span');
           span.id = `sent-${idx}`;
-          span.className = 'sentence-item block p-3 rounded-xl transition-all cursor-pointer hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 leading-relaxed mb-2';
+          span.className = 'sentence-item block p-3 rounded-xl cursor-pointer hover:bg-slate-200/60 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-100 leading-relaxed mb-2';
           span.textContent = sentenceText;
           sentenceFragment.appendChild(span);
         });
         textWrapper.appendChild(sentenceFragment);
- 
-        // Switch Views
-        viewUpload.classList.add('hidden');
-        viewReader.classList.remove('hidden');
-        playerBar.classList.remove('hidden');
- 
-        // Update Ranges & Controls
+
+        showView('reader');
+
         progressRange.max = Math.max(0, state.sentences.length - 1);
         playerTimeTotal.textContent = state.sentences.length;
- 
-        updatePlaybackUI();
 
-        // Load bookmarks for this document
-        await loadBookmarksForActiveDoc();
- 
-        // Scroll to saved position
-        setTimeout(() => {
-          scrollToSentence(state.currentSentenceIdx, 'auto');
-        }, 100);
+        updatePlaybackUI();
+        updateBookmarkBadge();
+        refreshBookmarkMarks();
+
+        // 이 책을 '마지막으로 읽은 책'으로 기록 → 다른 기기의 첫 화면도 이 책이 됨
+        doc.lastReadAt = Date.now();
+        sortDocs();
+        progressDirty = true;
+        flushCurrentProgress();
+        retryUploadIfLocalOnly(doc);
+
+        setTimeout(() => scrollToSentence(state.currentSentenceIdx, 'auto'), 100);
+        return true;
       }
- 
+
       // Encoding manual toggle
       document.getElementById('btn-encoding-toggle').addEventListener('click', async () => {
-        if (!state.activeDocId) return;
-        const doc = state.documents.find(d => d.id === state.activeDocId);
+        const doc = getActiveDoc();
         if (!doc) return;
- 
+
+        if (!state.currentRawBuffer || state.currentRawBufferDocId !== doc.id) {
+          showToast('인코딩을 바꾸려면 같은 TXT 파일을 다시 올려주세요.', 'error');
+          return;
+        }
+
         const nextEncoding = state.currentEncoding === 'EUC-KR' ? 'UTF-8' : 'EUC-KR';
-        
-        if (state.currentRawBuffer) {
+        let decodedText;
+        try {
+          decodedText = new TextDecoder(nextEncoding.toLowerCase()).decode(state.currentRawBuffer);
+        } catch (e) {
+          showToast('해당 인코딩으로 변환할 수 없습니다.', 'error');
+          return;
+        }
+        const total = parseTextIntoSentences(decodedText).length;
+
+        stopSpeech();
+        if (HAS_GAS && !doc.localOnly) {
+          showView('loading', '바뀐 내용을 저장하는 중…');
           try {
-            const decoder = new TextDecoder(nextEncoding.toLowerCase());
-            const decodedText = decoder.decode(state.currentRawBuffer);
-            
-            doc.content = decodedText;
-            doc.sentences = parseTextIntoSentences(decodedText);
-            doc.totalSentences = doc.sentences.length;
-            doc.encoding = nextEncoding;
-            
-            if (doc.currentIdx >= doc.sentences.length) {
-              doc.currentIdx = 0;
-            }
-            
-            await saveDocumentToStorage(doc);
-            openDocument(doc.id);
-            showToast(`인코딩을 ${nextEncoding}(으)로 변경했습니다.`, 'success');
+            const m = await gas('updateDocumentContent', doc.id, decodedText, nextEncoding, total);
+            doc.rev = m.rev;
+            doc.encoding = m.encoding;
+            doc.totalSentences = m.totalSentences;
+            doc.currentIdx = m.currentIdx;
+            doc.syncedAt = m.lastReadAt;
           } catch (e) {
-            showToast('해당 인코딩으로 변환할 수 없습니다.', 'error');
+            console.error(e);
+            showView('reader');
+            showToast('서버에 저장하지 못해 인코딩을 바꾸지 못했어요.', 'error');
+            return;
           }
         } else {
-          showToast('원본 바이너리 데이터를 찾을 수 없어 재업로드가 필요합니다.', 'error');
+          doc.rev = (doc.rev || 1) + 1;
+          doc.encoding = nextEncoding;
+          doc.totalSentences = total;
+          if (doc.currentIdx >= total) doc.currentIdx = 0;
         }
+        doc.content = decodedText;
+        cacheContent(doc, decodedText);
+        cacheMeta(doc);
+        await openDocument(doc.id);
+        showToast(`인코딩을 ${nextEncoding}(으)로 변경했습니다.`, 'success');
       });
- 
+
       function closeReader() {
+        exitSaver();
         stopSpeech();
         releaseWakeLock();
         flushCurrentProgress();
-        viewReader.classList.add('hidden');
-        playerBar.classList.add('hidden');
-        viewUpload.classList.remove('hidden');
+        showView('upload');
         state.activeDocId = null;
         state.bookmarks = [];
         activeSentenceEl = null;
@@ -1323,35 +1484,36 @@
         if (gotoForm) gotoForm.classList.add('hidden');
         if (inputSearchText) inputSearchText.value = '';
       }
- 
-      // Progress is written to IndexedDB every time a sentence finishes, but the
-      // previous version wrote the ENTIRE document object (full text + full
-      // sentence array) on every single sentence — for a long novel that's
-      // hundreds of KB re-serialized to disk multiple times per minute, which
-      // was the main cause of playback stutter.
-      //
-      // saveCurrentProgress() now only updates the in-memory doc record and
-      // schedules a throttled write; flushCurrentProgress() forces an immediate
-      // write and is used at points where we must not lose the position
-      // (pause, close, explicit jump, end of document).
+
+      // ============================================================
+      // --- PROGRESS SYNC ---
+      // 문장이 끝날 때마다 메모리만 갱신하고, 최대 3초에 한 번 서버/캐시에 저장.
+      // 일시정지·닫기·앱 전환 때는 즉시 저장. 실패하면 15초 뒤 재시도.
+      // ============================================================
       const PROGRESS_SAVE_INTERVAL_MS = 3000;
+      // [배터리 절약] 재생 중에는 30초에 한 번만 서버에 저장 (통신 칩이 자주 깨어나지 않도록).
+      // 일시정지·책 닫기·앱 전환·화면 꺼짐 때는 곧바로 저장하므로 위치를 잃지 않습니다.
+      const PROGRESS_SAVE_INTERVAL_PLAYING_MS = 30000;
+      const PROGRESS_RETRY_MS = 15000;
       let progressSaveTimer = null;
       let progressDirty = false;
+      let saveInFlight = false;
 
-      function saveCurrentProgress() {
-        if (!state.activeDocId) return;
-        const doc = state.documents.find(d => d.id === state.activeDocId);
-        if (!doc) return;
-
-        doc.currentIdx = state.currentSentenceIdx;
-        doc.lastReadAt = Date.now();
-        progressDirty = true;
-
-        if (progressSaveTimer) return; // a write is already scheduled
+      function scheduleFlush(ms) {
+        if (progressSaveTimer) return;
         progressSaveTimer = setTimeout(() => {
           progressSaveTimer = null;
           flushCurrentProgress();
-        }, PROGRESS_SAVE_INTERVAL_MS);
+        }, ms);
+      }
+
+      function saveCurrentProgress() {
+        const doc = getActiveDoc();
+        if (!doc) return;
+        doc.currentIdx = state.currentSentenceIdx;
+        doc.lastReadAt = Date.now();
+        progressDirty = true;
+        scheduleFlush(state.isPlaying ? PROGRESS_SAVE_INTERVAL_PLAYING_MS : PROGRESS_SAVE_INTERVAL_MS);
       }
 
       async function flushCurrentProgress() {
@@ -1359,30 +1521,41 @@
           clearTimeout(progressSaveTimer);
           progressSaveTimer = null;
         }
-        if (!progressDirty || !state.activeDocId) return;
-        const doc = state.documents.find(d => d.id === state.activeDocId);
-        if (doc) {
-          progressDirty = false;
-          await saveDocumentToStorage(doc);
+        const doc = getActiveDoc();
+        if (!progressDirty || !doc) return;
+        progressDirty = false;
+        cacheMeta(doc);
+
+        if (!HAS_GAS || doc.localOnly) return;
+        saveInFlight = true;
+        setSyncStatus('saving');
+        try {
+          const r = await gas('saveProgress', doc.id, doc.currentIdx);
+          if (r) {
+            doc.syncedAt = r.lastReadAt;
+            cacheMeta(doc);
+          }
+          serverOnline = true;
+          setSyncStatus('ok');
+        } catch (e) {
+          console.warn('진행 위치 저장 실패:', e);
+          serverOnline = false;
+          setSyncStatus('offline');
+          if (state.activeDocId === doc.id) {
+            progressDirty = true;
+            scheduleFlush(PROGRESS_RETRY_MS);
+          }
+        } finally {
+          saveInFlight = false;
         }
       }
 
       // ============================================================
       // --- BOOKMARK FEATURE (long-press on a sentence) ---
-      //
-      // Previously each sentence <span> got 9 of its own listeners
-      // (touchstart/move/end/cancel, mousedown/move/up/leave, click,
-      // contextmenu) attached individually in openDocument(). For a document
-      // with thousands of sentences that's tens of thousands of listeners
-      // created up front, which is what made opening a long file slow.
-      //
-      // This is now a single delegated listener set on #text-content-wrapper.
-      // The number of listeners no longer depends on how many sentences the
-      // document has.
       // ============================================================
-
       const LONG_PRESS_MS = 500;
-      const LONG_PRESS_MOVE_TOLERANCE = 12; // px — cancel long-press if finger/mouse moves too much
+      const LONG_PRESS_MOVE_TOLERANCE = 12;
+      const MAX_BOOKMARKS = 300;
 
       let pressTimer = null;
       let pressStartX = 0;
@@ -1424,52 +1597,37 @@
 
       function movePress(x, y) {
         if (!pressTimer) return;
-        const dx = Math.abs(x - pressStartX);
-        const dy = Math.abs(y - pressStartY);
-        if (dx > LONG_PRESS_MOVE_TOLERANCE || dy > LONG_PRESS_MOVE_TOLERANCE) {
+        if (Math.abs(x - pressStartX) > LONG_PRESS_MOVE_TOLERANCE || Math.abs(y - pressStartY) > LONG_PRESS_MOVE_TOLERANCE) {
           clearPressTimer();
         }
       }
 
-      function endPress() {
-        clearPressTimer();
-      }
+      function endPress() { clearPressTimer(); }
 
       function initSentenceDelegatedEvents() {
         if (!textWrapper) return;
-
-        // Touch (mobile)
         textWrapper.addEventListener('touchstart', (e) => {
           const el = e.target.closest('.sentence-item');
           if (!el) return;
           const t = e.touches[0];
           startPress(el, t.clientX, t.clientY);
         }, { passive: true });
-
         textWrapper.addEventListener('touchmove', (e) => {
           const t = e.touches[0];
           movePress(t.clientX, t.clientY);
         }, { passive: true });
-
         textWrapper.addEventListener('touchend', endPress);
         textWrapper.addEventListener('touchcancel', endPress);
 
-        // Mouse (desktop) — press and hold
         textWrapper.addEventListener('mousedown', (e) => {
           const el = e.target.closest('.sentence-item');
           if (!el) return;
           startPress(el, e.clientX, e.clientY);
         });
-
-        textWrapper.addEventListener('mousemove', (e) => {
-          movePress(e.clientX, e.clientY);
-        });
-
+        textWrapper.addEventListener('mousemove', (e) => movePress(e.clientX, e.clientY));
         textWrapper.addEventListener('mouseup', endPress);
         textWrapper.addEventListener('mouseleave', endPress);
 
-        // Click-to-jump, with long-press suppression so a long-press bookmark
-        // action doesn't also trigger a jump right after.
         textWrapper.addEventListener('click', (e) => {
           const el = e.target.closest('.sentence-item');
           if (!el) return;
@@ -1481,106 +1639,74 @@
           if (idx >= 0) jumpToSentence(idx, true);
         });
 
-        // Disable the native text-selection/context-menu long-press UI on
-        // mobile so it doesn't fight with our custom long-press gesture.
         textWrapper.addEventListener('contextmenu', (e) => {
-          if (e.target.closest('.sentence-item')) {
-            e.preventDefault();
-          }
+          if (e.target.closest('.sentence-item')) e.preventDefault();
         });
       }
 
-      async function loadBookmarksForActiveDoc() {
-        if (!state.activeDocId) {
-          state.bookmarks = [];
-          updateBookmarkBadge();
-          return;
-        }
-        try {
-          const bms = await idbGetByIndex(STORE_BOOKMARKS, 'docId', state.activeDocId);
-          bms.sort((a, b) => a.sentenceIdx - b.sentenceIdx);
-          state.bookmarks = bms;
-        } catch (e) {
-          console.error('Failed to load bookmarks:', e);
-          state.bookmarks = [];
-        }
-        updateBookmarkBadge();
-        markBookmarkedSentences();
-      }
-
-      function markBookmarkedSentences() {
-        // Called right after openDocument() freshly rebuilds all sentence
-        // spans, so none of them carry .sentence-bookmarked yet — no need to
-        // loop over every sentence to "clear" it first. Only mark the ones
-        // that actually have a bookmark.
+      function refreshBookmarkMarks() {
+        textWrapper.querySelectorAll('.sentence-bookmarked').forEach(el => el.classList.remove('sentence-bookmarked'));
         state.bookmarks.forEach(bm => {
           const el = document.getElementById(`sent-${bm.sentenceIdx}`);
           if (el) el.classList.add('sentence-bookmarked');
         });
       }
 
-      async function toggleBookmark(sentenceIdx, el) {
-        if (!state.activeDocId) return;
+      // 책갈피 변경을 문서에 반영하고 이 기기 캐시 + 서버에 저장
+      async function commitBookmarks() {
+        const doc = getActiveDoc();
+        if (!doc) return;
+        state.bookmarks.sort((a, b) => a.sentenceIdx - b.sentenceIdx);
+        doc.bookmarks = state.bookmarks;
+        updateBookmarkBadge();
+        cacheMeta(doc);
 
+        if (!HAS_GAS || doc.localOnly) return;
+        setSyncStatus('saving');
+        try {
+          await gas('saveBookmarks', doc.id, doc.bookmarks.map(b => [b.sentenceIdx, b.createdAt]));
+          serverOnline = true;
+          setSyncStatus('ok');
+        } catch (e) {
+          console.warn('책갈피 저장 실패:', e);
+          setSyncStatus('offline');
+          showToast('책갈피를 서버에 저장하지 못했어요. 이 기기에는 저장됐어요.', 'error');
+        }
+      }
+
+      function toggleBookmark(sentenceIdx, el) {
+        if (!state.activeDocId) return;
         const existing = state.bookmarks.find(b => b.sentenceIdx === sentenceIdx);
         if (existing) {
-          // Long-pressing an already-bookmarked sentence removes the bookmark.
-          try {
-            await idbDelete(STORE_BOOKMARKS, existing.id);
-            state.bookmarks = state.bookmarks.filter(b => b.id !== existing.id);
-            updateBookmarkBadge();
-            if (el) el.classList.remove('sentence-bookmarked');
-            showBookmarkToast(el, '책갈피를 삭제했어요', false);
-          } catch (e) {
-            console.error('Failed to remove bookmark:', e);
+          state.bookmarks = state.bookmarks.filter(b => b !== existing);
+          if (el) el.classList.remove('sentence-bookmarked');
+          showBookmarkToast(el, '책갈피를 삭제했어요', false);
+        } else {
+          if (state.bookmarks.length >= MAX_BOOKMARKS) {
+            showToast(`책갈피는 한 책에 ${MAX_BOOKMARKS}개까지 저장할 수 있어요.`, 'error');
+            return;
           }
-          return;
-        }
-
-        const snippetSource = state.sentences[sentenceIdx] || '';
-        const snippet = snippetSource.length > 60 ? snippetSource.slice(0, 60) + '…' : snippetSource;
-
-        const bookmark = {
-          docId: state.activeDocId,
-          sentenceIdx: sentenceIdx,
-          snippet: snippet,
-          createdAt: Date.now()
-        };
-
-        try {
-          const newId = await idbPut(STORE_BOOKMARKS, bookmark);
-          bookmark.id = newId;
-          state.bookmarks.push(bookmark);
-          state.bookmarks.sort((a, b) => a.sentenceIdx - b.sentenceIdx);
-          updateBookmarkBadge();
+          state.bookmarks.push({ sentenceIdx, createdAt: Date.now() });
           if (el) el.classList.add('sentence-bookmarked');
           showBookmarkToast(el, '책갈피에 저장했어요', true);
-        } catch (e) {
-          console.error('Failed to save bookmark:', e);
-          showToast('책갈피 저장에 실패했습니다.', 'error');
         }
+        commitBookmarks();
       }
 
       function showBookmarkToast(anchorEl, message, isAdd) {
         if (!bookmarkToast) return;
         const span = bookmarkToast.querySelector('span');
-        const icon = bookmarkToast.querySelector('i');
+        const icon = bookmarkToast.querySelector('svg, i');
         if (span) span.textContent = message;
-        if (icon) {
-          icon.style.opacity = isAdd ? '1' : '0.6';
-        }
-
+        if (icon) icon.style.opacity = isAdd ? '1' : '0.6';
         if (anchorEl) {
           const rect = anchorEl.getBoundingClientRect();
-          const top = Math.max(8, rect.top - 44);
-          bookmarkToast.style.top = `${top}px`;
+          bookmarkToast.style.top = `${Math.max(8, rect.top - 44)}px`;
           bookmarkToast.style.left = `${Math.min(window.innerWidth - 180, Math.max(8, rect.left))}px`;
         }
-
         bookmarkToast.classList.remove('hidden');
         bookmarkToast.classList.add('flex');
         bookmarkToast.style.opacity = '1';
-
         clearTimeout(showBookmarkToast._t);
         showBookmarkToast._t = setTimeout(() => {
           bookmarkToast.style.opacity = '0';
@@ -1596,14 +1722,9 @@
         bookmarkCountEl.textContent = state.bookmarks.length;
 
         if (!state.activeDocId) {
-          bookmarkListContainer.innerHTML = `
-            <div class="text-center py-8 text-slate-400 text-xs">
-              먼저 파일을 열어주세요.
-            </div>
-          `;
+          bookmarkListContainer.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs">먼저 파일을 열어주세요.</div>`;
           return;
         }
-
         if (state.bookmarks.length === 0) {
           bookmarkListContainer.innerHTML = `
             <div class="text-center py-8 text-slate-400 text-xs">
@@ -1618,23 +1739,23 @@
         state.bookmarks.forEach(bm => {
           const total = state.sentences.length || 1;
           const pct = Math.round(((bm.sentenceIdx + 1) / total) * 100);
+          const source = state.sentences[bm.sentenceIdx] || '';
+          const snippet = source.length > 60 ? source.slice(0, 60) + '…' : source;
           const formattedDate = new Date(bm.createdAt).toLocaleDateString('ko-KR', {
             month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
           });
 
           const card = document.createElement('div');
           card.className = 'p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-3 group hover:border-amber-500 transition-all';
-
           card.innerHTML = `
             <div class="min-w-0 flex-1 cursor-pointer">
               <div class="flex items-center gap-1.5 mb-1">
                 <i class="ph-bold ph-bookmark-simple text-amber-500 text-base"></i>
                 <h4 class="font-bold text-xs text-slate-800 dark:text-slate-100">문장 ${bm.sentenceIdx + 1} · ${pct}%</h4>
               </div>
-              <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug line-clamp-2">${bm.snippet}</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-snug line-clamp-2">${escapeHtml(snippet)}</p>
               <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-1">${formattedDate}</div>
             </div>
-
             <div class="flex items-center gap-1 shrink-0">
               <button class="btn-open-bookmark p-2 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 font-bold text-xs hover:bg-amber-100 transition-colors" title="이 위치부터 재생">
                 <i class="ph-bold ph-play"></i>
@@ -1649,24 +1770,17 @@
             closeModal(modalBookmarks);
             jumpToSentence(bm.sentenceIdx, false);
           });
-
           card.querySelector('.btn-open-bookmark').addEventListener('click', (e) => {
             e.stopPropagation();
             closeModal(modalBookmarks);
             jumpToSentence(bm.sentenceIdx, true);
           });
-
-          card.querySelector('.btn-delete-bookmark').addEventListener('click', async (e) => {
+          card.querySelector('.btn-delete-bookmark').addEventListener('click', (e) => {
             e.stopPropagation();
-            try {
-              await idbDelete(STORE_BOOKMARKS, bm.id);
-              state.bookmarks = state.bookmarks.filter(b => b.id !== bm.id);
-              updateBookmarkBadge();
-              markBookmarkedSentences();
-              renderBookmarkList();
-            } catch (err) {
-              console.error('Failed to delete bookmark:', err);
-            }
+            state.bookmarks = state.bookmarks.filter(b => b !== bm);
+            refreshBookmarkMarks();
+            renderBookmarkList();
+            commitBookmarks();
           });
 
           bookmarkListContainer.appendChild(card);
@@ -1674,50 +1788,38 @@
         });
       }
 
-      const btnBookmarks = document.getElementById('btn-bookmarks');
-      if (btnBookmarks) btnBookmarks.addEventListener('click', () => {
+      document.getElementById('btn-bookmarks').addEventListener('click', () => {
         renderBookmarkList();
         openModal(modalBookmarks);
       });
 
       document.getElementById('btn-clear-bookmarks').addEventListener('click', () => {
         if (!state.activeDocId || state.bookmarks.length === 0) return;
-        showConfirm('책갈피 삭제', '이 파일의 책갈피를 모두 삭제하시겠습니까?', async () => {
-          try {
-            for (const bm of state.bookmarks) {
-              await idbDelete(STORE_BOOKMARKS, bm.id);
-            }
-            state.bookmarks = [];
-            updateBookmarkBadge();
-            markBookmarkedSentences();
-            renderBookmarkList();
-          } catch (e) {
-            console.error('Failed to clear bookmarks:', e);
-          }
+        showConfirm('책갈피 삭제', '이 파일의 책갈피를 모두 삭제하시겠습니까?', () => {
+          state.bookmarks = [];
+          refreshBookmarkMarks();
+          renderBookmarkList();
+          commitBookmarks();
         });
       });
 
       // ============================================================
-      // --- GO-TO-SENTENCE (n번째 문장으로 바로가기) ---
+      // --- GO-TO-SENTENCE ---
       // ============================================================
-
-      if (btnGotoToggle) {
-        btnGotoToggle.addEventListener('click', () => {
-          if (!state.activeDocId) return;
-          const isHidden = gotoForm.classList.contains('hidden');
-          if (isHidden) {
-            gotoForm.classList.remove('hidden');
-            inputGotoSentence.value = state.currentSentenceIdx + 1;
-            inputGotoSentence.max = state.sentences.length;
-            setTimeout(() => {
-              inputGotoSentence.focus();
-              inputGotoSentence.select();
-            }, 20);
-          } else {
-            gotoForm.classList.add('hidden');
-          }
-        });
-      }
+      btnGotoToggle.addEventListener('click', () => {
+        if (!state.activeDocId) return;
+        if (gotoForm.classList.contains('hidden')) {
+          gotoForm.classList.remove('hidden');
+          inputGotoSentence.value = state.currentSentenceIdx + 1;
+          inputGotoSentence.max = state.sentences.length;
+          setTimeout(() => {
+            inputGotoSentence.focus();
+            inputGotoSentence.select();
+          }, 20);
+        } else {
+          gotoForm.classList.add('hidden');
+        }
+      });
 
       function goToSentenceFromInput() {
         if (!state.activeDocId) return;
@@ -1726,7 +1828,7 @@
           showToast('올바른 문장 번호를 입력하세요.', 'error');
           return;
         }
-        let target = raw - 1; // convert 1-based UI input to 0-based index
+        let target = raw - 1;
         if (target >= state.sentences.length) {
           target = state.sentences.length - 1;
           showToast(`마지막 문장(${state.sentences.length}번)으로 이동합니다.`, 'info');
@@ -1735,77 +1837,52 @@
         gotoForm.classList.add('hidden');
       }
 
-      if (btnGotoGo) btnGotoGo.addEventListener('click', goToSentenceFromInput);
-
-      if (inputGotoSentence) {
-        inputGotoSentence.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            goToSentenceFromInput();
-          } else if (e.key === 'Escape') {
-            gotoForm.classList.add('hidden');
-          }
-        });
-      }
+      btnGotoGo.addEventListener('click', goToSentenceFromInput);
+      inputGotoSentence.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          goToSentenceFromInput();
+        } else if (e.key === 'Escape') {
+          gotoForm.classList.add('hidden');
+        }
+      });
 
       // ============================================================
-      // --- FIND IN TEXT (찾기 기능) ---
+      // --- FIND IN TEXT ---
       // ============================================================
-
-      function escapeHtml(str) {
-        return str.replace(/[&<>"']/g, (ch) => ({
-          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-        }[ch]));
-      }
-
       function highlightMatch(sentenceText, query) {
         const escaped = escapeHtml(sentenceText);
         if (!query) return escaped;
-        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const escapedQuery = escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const re = new RegExp(`(${escapedQuery})`, 'gi');
         return escaped.replace(re, '<mark class="bg-amber-200 dark:bg-amber-500/40 text-slate-900 dark:text-white rounded px-0.5">$1</mark>');
       }
 
       function runSearch(query) {
         searchResultContainer.innerHTML = '';
-
         if (!state.activeDocId) {
           searchResultSummary.textContent = '';
-          searchResultContainer.innerHTML = `
-            <div class="text-center py-8 text-slate-400 text-xs">먼저 파일을 열어주세요.</div>
-          `;
+          searchResultContainer.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs">먼저 파일을 열어주세요.</div>`;
           return;
         }
-
         const trimmed = query.trim();
         if (!trimmed) {
           searchResultSummary.textContent = '';
-          searchResultContainer.innerHTML = `
-            <div class="text-center py-8 text-slate-400 text-xs">검색어를 입력하면 일치하는 문장이 여기에 표시됩니다.</div>
-          `;
+          searchResultContainer.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs">검색어를 입력하면 일치하는 문장이 여기에 표시됩니다.</div>`;
           return;
         }
-
         const lowerQuery = trimmed.toLowerCase();
         const matches = [];
         state.sentences.forEach((sentenceText, idx) => {
-          if (sentenceText.toLowerCase().includes(lowerQuery)) {
-            matches.push({ idx, text: sentenceText });
-          }
+          if (sentenceText.toLowerCase().includes(lowerQuery)) matches.push({ idx, text: sentenceText });
         });
-
         if (matches.length === 0) {
           searchResultSummary.textContent = '검색 결과 없음';
-          searchResultContainer.innerHTML = `
-            <div class="text-center py-8 text-slate-400 text-xs">
-              "${escapeHtml(trimmed)}"에 대한 검색 결과가 없습니다.
-            </div>
-          `;
+          searchResultContainer.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs">"${escapeHtml(trimmed)}"에 대한 검색 결과가 없습니다.</div>`;
           return;
         }
-
         searchResultSummary.textContent = `총 ${matches.length}건 일치`;
-
+        const frag = document.createDocumentFragment();
         matches.forEach(m => {
           const card = document.createElement('div');
           card.className = 'p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 cursor-pointer hover:border-brand-500 transition-all';
@@ -1817,50 +1894,38 @@
             closeModal(modalSearch);
             jumpToSentence(m.idx, false);
           });
-          searchResultContainer.appendChild(card);
+          frag.appendChild(card);
         });
+        searchResultContainer.appendChild(frag);
       }
 
-      if (btnSearch) {
-        btnSearch.addEventListener('click', () => {
-          if (!state.activeDocId) {
-            showToast('먼저 TXT 파일을 열어주세요.', 'error');
-            return;
-          }
-          openModal(modalSearch);
-          runSearch(inputSearchText.value || '');
-          setTimeout(() => inputSearchText.focus(), 50);
-        });
-      }
+      btnSearch.addEventListener('click', () => {
+        if (!state.activeDocId) {
+          showToast('먼저 TXT 파일을 열어주세요.', 'error');
+          return;
+        }
+        openModal(modalSearch);
+        runSearch(inputSearchText.value || '');
+        setTimeout(() => inputSearchText.focus(), 50);
+      });
 
-      // Debounced so runSearch() (which loops over every sentence and rebuilds
-      // the result list DOM) only runs once typing pauses, instead of on
-      // every keystroke.
       const SEARCH_DEBOUNCE_MS = 250;
       let searchDebounceTimer = null;
+      inputSearchText.addEventListener('input', (e) => {
+        const val = e.target.value;
+        btnSearchClear.classList.toggle('hidden', val.length === 0);
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(() => runSearch(val), SEARCH_DEBOUNCE_MS);
+      });
 
-      if (inputSearchText) {
-        inputSearchText.addEventListener('input', (e) => {
-          const val = e.target.value;
-          btnSearchClear.classList.toggle('hidden', val.length === 0);
+      btnSearchClear.addEventListener('click', () => {
+        clearTimeout(searchDebounceTimer);
+        inputSearchText.value = '';
+        btnSearchClear.classList.add('hidden');
+        runSearch('');
+        inputSearchText.focus();
+      });
 
-          clearTimeout(searchDebounceTimer);
-          searchDebounceTimer = setTimeout(() => {
-            runSearch(val);
-          }, SEARCH_DEBOUNCE_MS);
-        });
-      }
-
-      if (btnSearchClear) {
-        btnSearchClear.addEventListener('click', () => {
-          clearTimeout(searchDebounceTimer);
-          inputSearchText.value = '';
-          btnSearchClear.classList.add('hidden');
-          runSearch('');
-          inputSearchText.focus();
-        });
-      }
- 
       // --- PLAYBACK CONTROL ENGINE ---
       function speakCurrentSentence() {
         if (!synth) {
@@ -1873,52 +1938,50 @@
           pauseSpeech();
           return;
         }
- 
+
         stopSpeech();
         requestWakeLock();
- 
+
         const text = state.sentences[state.currentSentenceIdx];
         currentUtterance = new SpeechSynthesisUtterance(text);
- 
         if (state.selectedVoiceName) {
           const voiceObj = state.voices.find(v => v.name === state.selectedVoiceName);
           if (voiceObj) currentUtterance.voice = voiceObj;
         }
- 
         currentUtterance.rate = state.rate;
         currentUtterance.pitch = state.pitch;
- 
+
         currentUtterance.onend = () => {
           if (state.isPlaying) {
             state.currentSentenceIdx++;
             saveCurrentProgress();
-            
             if (state.currentSentenceIdx < state.sentences.length) {
               updatePlaybackUI();
               speakCurrentSentence();
             } else {
+              state.currentSentenceIdx = state.sentences.length - 1;
               state.isPlaying = false;
               state.isPaused = false;
               releaseWakeLock();
               updatePlayButtonIcon();
+              saveCurrentProgress();
               flushCurrentProgress();
             }
           }
         };
- 
+
         currentUtterance.onerror = (err) => {
           console.warn('Speech error:', err);
           releaseWakeLock();
         };
- 
+
         synth.speak(currentUtterance);
         state.isPlaying = true;
         state.isPaused = false;
- 
         updatePlaybackUI();
         updatePlayButtonIcon();
       }
- 
+
       function playSpeech() {
         if (!synth) {
           showToast('이 브라우저는 음성 재생을 지원하지 않습니다.', 'error');
@@ -1934,7 +1997,7 @@
           speakCurrentSentence();
         }
       }
- 
+
       function pauseSpeech() {
         if (synth && synth.speaking) {
           synth.pause();
@@ -1945,7 +2008,7 @@
           flushCurrentProgress();
         }
       }
- 
+
       function stopSpeech() {
         if (synth) synth.cancel();
         state.isPlaying = false;
@@ -1953,133 +2016,224 @@
         releaseWakeLock();
         updatePlayButtonIcon();
       }
- 
+
+      // 이동은 즉시 화면에 반영하고, 저장은 3초 묶음 저장(연속 탭/슬라이더 드래그 시 서버 호출 최소화)
       function jumpToSentence(index, autoPlay = false) {
         if (index < 0) index = 0;
         if (index >= state.sentences.length) index = state.sentences.length - 1;
- 
+
         state.currentSentenceIdx = index;
         saveCurrentProgress();
-        flushCurrentProgress();
         updatePlaybackUI();
- 
+
         if (autoPlay || state.isPlaying) {
           speakCurrentSentence();
         } else {
           stopSpeech();
         }
       }
- 
-      // Tracks the currently-highlighted sentence element so updatePlaybackUI()
-      // never has to re-query and loop over every sentence in the document.
+
       let activeSentenceEl = null;
 
+      // [배터리 절약] 화면이 꺼졌거나(앱 전환) 절전 화면일 때는 화면을 다시 그리지 않고
+      // '나중에 그리기'만 표시해 두었다가, 화면이 다시 보일 때 한 번만 그립니다.
+      let uiStale = false;
+
       function updatePlaybackUI() {
+        if (document.hidden || saverActive) {
+          uiStale = true;
+          updateSaverInfo();
+          return;
+        }
+        const wasStale = uiStale;
+        uiStale = false;
+
         const curr = state.currentSentenceIdx;
         const total = state.sentences.length;
- 
         const pct = total > 0 ? Math.round(((curr + 1) / total) * 100) : 0;
         docProgressText.textContent = `${pct}%`;
         docSentenceCount.textContent = `${curr + 1} / ${total} 문장`;
-        
         progressRange.value = curr;
         playerTimeCurr.textContent = curr + 1;
- 
-        // O(1) highlight swap instead of looping over every .sentence-item.
-        if (activeSentenceEl) {
-          activeSentenceEl.classList.remove('sentence-active');
-        }
+
+        if (activeSentenceEl) activeSentenceEl.classList.remove('sentence-active');
         const nextActiveEl = document.getElementById(`sent-${curr}`);
-        if (nextActiveEl) {
-          nextActiveEl.classList.add('sentence-active');
-        }
+        if (nextActiveEl) nextActiveEl.classList.add('sentence-active');
         activeSentenceEl = nextActiveEl;
- 
-        if (state.autoScroll) {
-          scrollToSentence(curr);
-        }
+
+        if (state.autoScroll) scrollToSentenceIfNeeded(curr, wasStale);
       }
- 
+
       function scrollToSentence(index, behavior = 'smooth') {
         const target = document.getElementById(`sent-${index}`);
-        if (target) {
-          target.scrollIntoView({ behavior, block: 'center' });
-        }
+        if (target) target.scrollIntoView({ behavior, block: 'center' });
       }
- 
+
+      // [배터리 절약] 읽는 문장이 화면 가운데 영역 안에 있으면 스크롤하지 않음.
+      // (예전: 문장마다 매번 부드러운 스크롤 애니메이션 → 지금: 화면 밖으로 나갈 때만)
+      function scrollToSentenceIfNeeded(index, instant = false) {
+        const target = document.getElementById(`sent-${index}`);
+        if (!target || !readerScrollContainer) return;
+        const box = readerScrollContainer.getBoundingClientRect();
+        const r = target.getBoundingClientRect();
+        const bandTop = box.top + box.height * 0.2;
+        const bandBottom = box.top + box.height * 0.7;
+        if (!instant && r.top >= bandTop && r.bottom <= bandBottom) return;
+        target.scrollIntoView({ behavior: instant ? 'auto' : 'smooth', block: 'center' });
+      }
+
       function updatePlayButtonIcon() {
-        if (!iconPlay || !iconPause) return;
-        if (state.isPlaying) {
-          iconPlay.classList.add('hidden');
-          iconPause.classList.remove('hidden');
-        } else {
-          iconPlay.classList.remove('hidden');
-          iconPause.classList.add('hidden');
-        }
+        const play = document.getElementById('icon-play');
+        const pause = document.getElementById('icon-pause');
+        if (state.isPlaying) startIdleWatch(); else stopIdleWatch();
+        updateSaverInfo();
+        if (!play || !pause) return;
+        play.classList.toggle('hidden', state.isPlaying);
+        pause.classList.toggle('hidden', !state.isPlaying);
       }
- 
-      // --- EVENT LISTENERS ---
- 
-      btnPlayPause.addEventListener('click', () => {
-        if (state.isPlaying) {
-          pauseSpeech();
-        } else {
-          playSpeech();
+
+      // ============================================================
+      // --- BATTERY SAVER SCREEN (검은 절전 화면) ---
+      // 휴대폰 배터리를 가장 많이 쓰는 것은 '켜져 있는 밝은 화면'입니다.
+      // 대부분의 휴대폰(OLED)은 검은 화소를 끄기 때문에, 화면을 완전히 검게 덮으면
+      // 화면 전력이 크게 줄고, 페이지는 살아 있어 음성은 끊기지 않고 계속 나옵니다.
+      // ============================================================
+      const AUTO_SAVER_IDLE_MS = 30000;
+      const SAVER_DOUBLE_TAP_MS = 450;
+      let saverActive = false;
+      let saverAuto = false;
+      let saverMoveTimer = null;
+      let saverHintTimer = null;
+      let lastSaverTap = 0;
+      let idleWatchTimer = null;
+      let lastInteractAt = Date.now();
+
+      function anyModalOpen() {
+        return [modalVoice, modalLibrary, modalBookmarks, modalSearch, document.getElementById('modal-confirm')]
+          .some(m => m && !m.classList.contains('hidden'));
+      }
+
+      function updateSaverInfo() {
+        if (!saverActive || !saverProgress) return;
+        const total = state.sentences.length;
+        const mark = state.isPlaying ? '▶' : '❚❚';
+        saverProgress.textContent = `${mark}  ${Math.min(state.currentSentenceIdx + 1, total)} / ${total}`;
+      }
+
+      // 같은 자리가 오래 켜져 있지 않도록(번인 방지) 1분마다 글자 위치를 옮김
+      function moveSaverInfo() {
+        if (!saverInfo) return;
+        saverInfo.style.left = `${25 + Math.random() * 50}%`;
+        saverInfo.style.top = `${20 + Math.random() * 60}%`;
+      }
+
+      function enterSaver(isAuto = false) {
+        if (saverActive || !state.activeDocId) return;
+        saverActive = true;
+        saverAuto = isAuto;
+        saverInfo.lastElementChild.textContent = isAuto
+          ? '두 번 탭하면 돌아갑니다 · 자동 절전은 설정에서 끌 수 있어요'
+          : '두 번 탭하면 돌아갑니다';
+        saverOverlay.classList.remove('hidden');
+        updateSaverInfo();
+        moveSaverInfo();
+        saverMoveTimer = setInterval(moveSaverInfo, 60000);
+      }
+
+      function exitSaver() {
+        if (!saverActive) return;
+        saverActive = false;
+        saverOverlay.classList.add('hidden');
+        saverInfo.classList.remove('saver-hint');
+        clearInterval(saverMoveTimer);
+        saverMoveTimer = null;
+        lastInteractAt = Date.now();
+        if (uiStale) updatePlaybackUI();
+      }
+
+      saverOverlay.addEventListener('click', () => {
+        const now = Date.now();
+        if (now - lastSaverTap < SAVER_DOUBLE_TAP_MS) {
+          lastSaverTap = 0;
+          exitSaver();
+          return;
         }
+        lastSaverTap = now;
+        // 한 번 탭: 안내 글자를 잠깐 밝게
+        saverInfo.classList.add('saver-hint');
+        clearTimeout(saverHintTimer);
+        saverHintTimer = setTimeout(() => saverInfo.classList.remove('saver-hint'), 2000);
       });
- 
-      btnPrev.addEventListener('click', () => {
-        jumpToSentence(state.currentSentenceIdx - 1);
+
+      btnSaver.addEventListener('click', () => enterSaver(false));
+
+      // 사용자가 화면을 만지면 '마지막 조작 시각' 갱신 (자동 스크롤로 생기는 scroll 이벤트는 제외)
+      ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(type => {
+        document.addEventListener(type, () => { lastInteractAt = Date.now(); }, { passive: true, capture: true });
       });
- 
-      btnNext.addEventListener('click', () => {
-        jumpToSentence(state.currentSentenceIdx + 1);
+
+      // 재생 중일 때만 5초마다 한 번 확인 (멈춰 있으면 타이머 자체를 끔)
+      function startIdleWatch() {
+        if (idleWatchTimer) return;
+        lastInteractAt = Date.now();
+        idleWatchTimer = setInterval(() => {
+          if (!state.isPlaying) { stopIdleWatch(); return; }
+          if (state.autoSaver && !saverActive && !document.hidden && !anyModalOpen() &&
+              Date.now() - lastInteractAt >= AUTO_SAVER_IDLE_MS) {
+            enterSaver(true);
+          }
+        }, 5000);
+      }
+
+      function stopIdleWatch() {
+        if (!idleWatchTimer) return;
+        clearInterval(idleWatchTimer);
+        idleWatchTimer = null;
+      }
+
+      toggleAutoSaver.addEventListener('change', (e) => {
+        state.autoSaver = e.target.checked;
+        lsSet('tts_auto_saver', state.autoSaver); saveSettingsSoon();
       });
- 
-      progressRange.addEventListener('input', (e) => {
-        const val = parseInt(e.target.value, 10);
-        jumpToSentence(val);
+
+      // --- EVENT LISTENERS ---
+      btnPlayPause.addEventListener('click', () => {
+        if (state.isPlaying) pauseSpeech();
+        else playSpeech();
       });
- 
+
+      btnPrev.addEventListener('click', () => jumpToSentence(state.currentSentenceIdx - 1));
+      btnNext.addEventListener('click', () => jumpToSentence(state.currentSentenceIdx + 1));
+
+      progressRange.addEventListener('input', (e) => jumpToSentence(parseInt(e.target.value, 10)));
+      progressRange.addEventListener('change', () => flushCurrentProgress());
+
       const speeds = [0.75, 1.0, 1.25, 1.5, 2.0];
       btnSpeed.addEventListener('click', () => {
-        let currentSpeed = state.rate;
-        let nextIdx = (speeds.indexOf(currentSpeed) + 1) % speeds.length;
-        if (nextIdx === -1) nextIdx = 1;
-        
-        state.rate = speeds[nextIdx];
-        btnSpeed.textContent = `${state.rate}x`;
+        // 지금 속도보다 한 단계 빠른 값으로 (슬라이더로 1.3배처럼 정한 경우에도 자연스럽게 이어짐)
+        state.rate = speeds.find(s => s > state.rate + 0.001) || speeds[0];
+        btnSpeed.textContent = formatRate(state.rate);
         inputRate.value = state.rate;
-        valRate.textContent = `${state.rate}x`;
-        localStorage.setItem('tts_rate', state.rate);
- 
-        if (state.isPlaying) {
-          speakCurrentSentence();
-        }
+        valRate.textContent = formatRate(state.rate);
+        lsSet('tts_rate', state.rate); saveSettingsSoon();
+        if (state.isPlaying) speakCurrentSentence();
       });
- 
-      btnScrollActive.addEventListener('click', () => {
-        scrollToSentence(state.currentSentenceIdx);
-      });
- 
+
+      btnScrollActive.addEventListener('click', () => scrollToSentence(state.currentSentenceIdx));
+
       document.getElementById('btn-close-reader').addEventListener('click', closeReader);
- 
+
       // --- MODALS MANAGERS ---
       function openModal(modal) {
         modal.classList.remove('hidden');
-        setTimeout(() => {
-          modal.classList.remove('opacity-0');
-        }, 10);
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
       }
- 
+
       function closeModal(modal) {
         modal.classList.add('opacity-0');
-        setTimeout(() => {
-          modal.classList.add('hidden');
-        }, 200);
+        setTimeout(() => modal.classList.add('hidden'), 200);
       }
- 
-      // 1. 모달 닫기 버튼 이벤트 연결 및 괄호 구문 오류 수정
+
       document.querySelectorAll('.btn-close-modal').forEach(btn => {
         btn.addEventListener('click', () => {
           closeModal(modalVoice);
@@ -2088,26 +2242,20 @@
           closeModal(modalSearch);
         });
       });
- 
-      // 2. 상단 및 하단 메뉴 모달 열기 이벤트 연결
-      const btnVoiceSettings = document.getElementById('btn-voice-settings');
-      if (btnVoiceSettings) btnVoiceSettings.addEventListener('click', () => openModal(modalVoice));
-      
-      if (btnQuickVoice) btnQuickVoice.addEventListener('click', () => openModal(modalVoice));
-      
-      const btnLibrary = document.getElementById('btn-library');
-      if (btnLibrary) btnLibrary.addEventListener('click', () => {
+
+      document.getElementById('btn-voice-settings').addEventListener('click', () => openModal(modalVoice));
+      btnQuickVoice.addEventListener('click', () => openModal(modalVoice));
+
+      document.getElementById('btn-library').addEventListener('click', () => {
         renderLibraryList();
         openModal(modalLibrary);
       });
-      
-      const btnLibraryNew = document.getElementById('btn-library-new-file');
-      if (btnLibraryNew) btnLibraryNew.addEventListener('click', () => {
+
+      document.getElementById('btn-library-new-file').addEventListener('click', () => {
         closeModal(modalLibrary);
-        document.getElementById('input-file').click();
+        inputFile.click();
       });
- 
-      // 3. 음성 성별(전체/여성/남성) 필터 버튼 로직
+
       document.querySelectorAll('.btn-gender-filter').forEach(btn => {
         btn.addEventListener('click', (e) => {
           document.querySelectorAll('.btn-gender-filter').forEach(b => {
@@ -2115,65 +2263,52 @@
           });
           const target = e.currentTarget;
           target.className = 'btn-gender-filter px-3 py-2 rounded-xl text-xs font-semibold border border-brand-500 bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300';
-          
           state.genderFilter = target.getAttribute('data-gender');
           populateVoiceSelect();
         });
       });
- 
-      // Settings Control Handlers
-      if (inputFontSize) {
-        inputFontSize.addEventListener('input', (e) => {
-          state.fontSize = parseInt(e.target.value, 10);
-          localStorage.setItem('tts_font_size', state.fontSize);
-          updateFontSize();
-        });
-      }
- 
+
+      inputFontSize.addEventListener('input', (e) => {
+        state.fontSize = parseInt(e.target.value, 10);
+        lsSet('tts_font_size', state.fontSize); saveSettingsSoon();
+        updateFontSize();
+      });
+
       document.querySelectorAll('.btn-pos-toggle').forEach(btn => {
         btn.addEventListener('click', (e) => {
-          const pos = e.currentTarget.getAttribute('data-pos');
-          state.playerPos = pos;
-          localStorage.setItem('tts_player_pos', state.playerPos);
+          state.playerPos = e.currentTarget.getAttribute('data-pos');
+          lsSet('tts_player_pos', state.playerPos); saveSettingsSoon();
           updatePlayerPosition();
         });
       });
- 
-      if (toggleWakeLock) {
-        toggleWakeLock.addEventListener('change', (e) => {
-          state.wakeLockEnabled = e.target.checked;
-          localStorage.setItem('tts_wake_lock', state.wakeLockEnabled);
-          if (state.wakeLockEnabled && state.isPlaying) {
-            requestWakeLock();
-          } else {
-            releaseWakeLock();
-          }
-        });
-      }
- 
+
+      toggleWakeLock.addEventListener('change', (e) => {
+        state.wakeLockEnabled = e.target.checked;
+        lsSet('tts_wake_lock', state.wakeLockEnabled); saveSettingsSoon();
+        if (state.wakeLockEnabled && state.isPlaying) requestWakeLock();
+        else releaseWakeLock();
+      });
+
       selectVoice.addEventListener('change', (e) => {
         state.selectedVoiceName = e.target.value;
-        localStorage.setItem('tts_voice_name', state.selectedVoiceName);
+        lsSet('tts_voice_name', state.selectedVoiceName); saveSettingsSoon();
         updateQuickVoiceLabel();
- 
-        if (state.isPlaying) {
-          speakCurrentSentence();
-        }
+        if (state.isPlaying) speakCurrentSentence();
       });
- 
+
       inputRate.addEventListener('input', (e) => {
         state.rate = parseFloat(e.target.value);
-        valRate.textContent = `${state.rate.toFixed(1)}x`;
-        btnSpeed.textContent = `${state.rate.toFixed(1)}x`;
-        localStorage.setItem('tts_rate', state.rate);
+        valRate.textContent = formatRate(state.rate);
+        btnSpeed.textContent = formatRate(state.rate);
+        lsSet('tts_rate', state.rate); saveSettingsSoon();
       });
- 
+
       inputPitch.addEventListener('input', (e) => {
         state.pitch = parseFloat(e.target.value);
         valPitch.textContent = state.pitch.toFixed(1);
-        localStorage.setItem('tts_pitch', state.pitch);
+        lsSet('tts_pitch', state.pitch); saveSettingsSoon();
       });
- 
+
       btnTestVoice.addEventListener('click', () => {
         if (!synth) {
           showToast('이 브라우저는 음성 재생을 지원하지 않습니다.', 'error');
@@ -2189,12 +2324,12 @@
         testUtterance.pitch = state.pitch;
         synth.speak(testUtterance);
       });
- 
+
       // --- LIBRARY RENDERER ---
       function renderLibraryList() {
         libraryListContainer.innerHTML = '';
         libraryCount.textContent = state.documents.length;
- 
+
         if (state.documents.length === 0) {
           libraryListContainer.innerHTML = `
             <div class="text-center py-8 text-slate-400 text-xs">
@@ -2205,23 +2340,26 @@
           renderAllIcons(libraryListContainer);
           return;
         }
- 
+
         state.documents.forEach(doc => {
           const total = doc.totalSentences || 1;
           const curr = doc.currentIdx || 0;
-          const pct = Math.round(((curr + 1) / total) * 100);
-          const formattedDate = new Date(doc.lastReadAt).toLocaleDateString('ko-KR', {
+          const pct = Math.min(100, Math.round(((curr + 1) / total) * 100));
+          const formattedDate = new Date(doc.lastReadAt || Date.now()).toLocaleDateString('ko-KR', {
             month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
           });
- 
+          const localBadge = doc.localOnly
+            ? '<span class="shrink-0 text-[9px] font-bold text-rose-500 bg-rose-50 dark:bg-rose-900/30 px-1.5 py-0.5 rounded">이 기기만</span>'
+            : '';
+
           const card = document.createElement('div');
           card.className = 'p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 flex items-center justify-between gap-3 group hover:border-brand-500 transition-all';
-          
           card.innerHTML = `
             <div class="min-w-0 flex-1 cursor-pointer">
               <div class="flex items-center gap-1.5 mb-1">
                 <i class="ph-bold ph-file-text text-brand-600 dark:text-brand-400 text-base"></i>
-                <h4 class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${doc.name}</h4>
+                <h4 class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${escapeHtml(doc.name)}</h4>
+                ${localBadge}
               </div>
               <div class="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                 <span>진행률 ${pct}%</span>
@@ -2234,7 +2372,6 @@
                 <div class="h-full bg-brand-600 rounded-full" style="width: ${pct}%"></div>
               </div>
             </div>
- 
             <div class="flex items-center gap-1 shrink-0">
               <button class="btn-open-doc p-2 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300 font-bold text-xs hover:bg-brand-100 transition-colors" title="이어서 읽기">
                 <i class="ph-bold ph-play"></i>
@@ -2244,72 +2381,77 @@
               </button>
             </div>
           `;
- 
-          card.querySelector('.min-w-0').addEventListener('click', () => {
+
+          const open = () => {
             closeModal(modalLibrary);
             openDocument(doc.id);
-          });
- 
-          card.querySelector('.btn-open-doc').addEventListener('click', () => {
-            closeModal(modalLibrary);
-            openDocument(doc.id);
-          });
- 
+          };
+          card.querySelector('.min-w-0').addEventListener('click', open);
+          card.querySelector('.btn-open-doc').addEventListener('click', open);
+
           card.querySelector('.btn-delete-doc').addEventListener('click', (e) => {
             e.stopPropagation();
-            showConfirm('파일 삭제', `'${doc.name}' 파일을 목록에서 삭제하시겠습니까?`, async () => {
+            showConfirm('파일 삭제', `'${doc.name}' 파일을 서재에서 삭제하시겠습니까? (모든 기기에서 삭제됩니다)`, async () => {
+              if (state.activeDocId === doc.id) closeReader();
               state.documents = state.documents.filter(d => d.id !== doc.id);
-              await deleteDocumentFromStorage(doc.id);
+              idbDelete(STORE_META, doc.id);
+              idbDelete(STORE_CONTENT, doc.id);
               updateBadgeCount();
               renderLibraryList();
-              if (state.activeDocId === doc.id) {
-                closeReader();
+              if (HAS_GAS && !doc.localOnly) {
+                try {
+                  await gas('deleteDocument', doc.id);
+                } catch (err) {
+                  console.error(err);
+                  showToast('서버에서 삭제하지 못했어요. 다음에 다시 시도해 주세요.', 'error');
+                }
               }
             });
           });
- 
+
           libraryListContainer.appendChild(card);
           renderAllIcons(card);
         });
       }
- 
+
       document.getElementById('btn-clear-history').addEventListener('click', () => {
         if (state.documents.length === 0) return;
-        showConfirm('서재 전체 삭제', '저장된 모든 읽기 기록을 삭제하시겠습니까?', async () => {
-          const idsToRemove = state.documents.map(d => d.id);
+        showConfirm('서재 전체 삭제', '저장된 모든 읽기 기록을 삭제하시겠습니까? (모든 기기에서 삭제됩니다)', async () => {
+          closeReader();
           state.documents = [];
-          try {
-            await idbClear(STORE_DOCS);
-            await idbClear(STORE_BOOKMARKS);
-          } catch (e) {
-            console.error('Failed to clear IndexedDB stores:', e);
-          }
+          idbClear(STORE_META);
+          idbClear(STORE_CONTENT);
           updateBadgeCount();
           renderLibraryList();
-          closeReader();
+          if (HAS_GAS) {
+            try {
+              await gas('clearLibrary');
+            } catch (e) {
+              console.error(e);
+              showToast('서버 기록을 삭제하지 못했어요.', 'error');
+            }
+          }
         });
       });
- 
-      // --- THEME: fixed to light mode by default; dark toggle still available ---
+
+      // --- THEME ---
       function initTheme() {
-        // Previously this auto-followed the OS "prefers-color-scheme" setting on
-        // first visit. Per current design direction the app now always starts in
-        // light mode unless the user has explicitly chosen dark mode before.
-        const savedTheme = localStorage.getItem('theme');
-        const isDark = savedTheme === 'dark';
- 
-        if (isDark) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+        const isDark = lsGet('theme') === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
       }
- 
+
       document.getElementById('btn-theme').addEventListener('click', () => {
         const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        lsSet('theme', isDark ? 'dark' : 'light'); saveSettingsSoon();
       });
- 
+
+      // --- START ---
+      initTheme();
+      initLayoutAndSettings();
+      initSentenceDelegatedEvents();
+      initSpeechVoices();
+      initApp();
+
     });
   </script>
 </body>
